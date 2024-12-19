@@ -14,15 +14,15 @@
         }
 
         body {
-            background: #121212;
-            color: #f0d98c;
+            background: #0c0c0c;
+            color: #f5faff;
             overflow-x: hidden;
         }
 
         header {
             position: fixed;
             width: 100%;
-            background: rgba(18, 18, 18, 0.95);
+            background: linear-gradient(90deg, #1a1a1a, #2a2a4f);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -34,6 +34,7 @@
         header .logo {
             font-size: 1.5em;
             font-weight: bold;
+            color: #87ceeb;
         }
 
         header nav ul {
@@ -47,12 +48,12 @@
 
         header nav ul li a {
             text-decoration: none;
-            color: #f0d98c;
+            color: #f5faff;
             transition: color 0.3s;
         }
 
         header nav ul li a:hover {
-            color: #d4af37;
+            color: #87ceeb;
         }
 
         .hero {
@@ -72,13 +73,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(12, 12, 12, 0.6);
         }
 
         .hero-content {
             position: relative;
             z-index: 10;
-            color: #f0d98c;
+            color: #f5faff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .hero-content h1 {
@@ -95,55 +97,69 @@
             padding: 10px 20px;
             font-size: 1em;
             text-decoration: none;
-            color: #121212;
-            background: #f0d98c;
+            color: #0c0c0c;
+            background: #87ceeb;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         }
 
         .hero-content a:hover {
-            background: #d4af37;
+            background: #5a9bd4;
+            transform: translateY(-3px);
         }
 
         .about {
             padding: 50px;
             text-align: center;
-            background: #1e1e1e;
+            background: #1a1a1a;
+            border-top: 5px solid #2a2a4f;
         }
 
         .about h2 {
             margin-bottom: 20px;
             font-size: 2.5em;
+            color: #87ceeb;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .about p {
             font-size: 1.2em;
             line-height: 1.5;
+            color: #dcdcdc;
         }
 
         .features {
             padding: 50px;
-            background: #1e1e1e;
+            background: #121212;
+            border-top: 5px solid #2a2a4f;
         }
 
         .features-grid {
             display: flex;
             gap: 20px;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .feature-card {
-            background: #2a2a2a;
+            background: #1e1e3f;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
             text-align: center;
-            color: #f0d98c;
+            color: #f5faff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 1);
         }
 
         .feature-card img {
             width: 100%;
-            height: 220px;
+            height: 240px;
             border-radius: 10px;
             margin-bottom: 20px;
             object-fit: cover;
@@ -151,14 +167,16 @@
 
         .genres {
             padding: 50px;
-            background: #1e1e1e;
-            color: #f0d98c;
+            background: #1a1a1a;
+            color: #f5faff;
             text-align: center;
+            border-top: 5px solid #2a2a4f;
         }
 
         .genres h2 {
             margin-bottom: 30px;
             font-size: 2.5em;
+            color: #87ceeb;
         }
 
         .genres-grid {
@@ -170,41 +188,57 @@
         }
 
         .genre-card {
-            background: #2a2a2a;
+            background: #1e1e3f;
             border-radius: 10px;
             overflow: hidden;
             text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .genre-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 1);
         }
 
         .genre-card img {
             width: 100%;
-            height: 290px;
+            height: 310px;
             object-fit: cover;
         }
 
         .genre-card h3 {
             padding: 15px;
+            color: #f5faff;
         }
 
         .reviews {
             padding: 50px;
-            background: #1e1e1e;
-            color: #f0d98c;
+            background: #121212;
+            color: #f5faff;
             text-align: center;
+            border-top: 5px solid #2a2a4f;
         }
 
         .reviews h2 {
             margin-bottom: 30px;
             font-size: 2.5em;
+            color: #87ceeb;
         }
 
         .review {
             margin-bottom: 20px;
             padding: 20px;
-            background: #2a2a2a;
+            background: #1e1e3f;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
-            color: #f0d98c;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+            color: #f5faff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .review:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 1);
         }
 
         .review h3 {
@@ -219,12 +253,13 @@
         footer {
             text-align: center;
             padding: 20px;
-            background: #121212;
+            background: #0c0c0c;
+            border-top: 5px solid #2a2a4f;
         }
 
         footer p {
             font-size: 0.9em;
-            color: #f0d98c;
+            color: #f5faff;
         }
 
     </style>
@@ -263,23 +298,23 @@
             <div class="feature-card">
                 <img src="https://i.pinimg.com/474x/b8/4c/f9/b84cf9ca583f360e40a07aa593e9110b.jpg" alt="Poster 1">
                 <h3>Trending Designs</h3>
-                <p>Explore the most popular posters loved by our community.</p>
+                <p>Explore the latest and trending designs tailored to modern aesthetics.</p>
             </div>
             <div class="feature-card">
-                <img src="https://i.pinimg.com/236x/30/a1/6e/30a16e3f3520ba6db34b96bc2726f899.jpg" alt="Poster 2">
-                <h3>Custom Posters</h3>
-                <p>Create personalized posters to match your vibe.</p>
+                <img src="https://i.pinimg.com/474x/fe/85/77/fe8577ae5df9f77168d3c9e57498c816.jpg" alt="Poster 2">
+                <h3>Custom Creations</h3>
+                <p>Create personalized designs that speak your story.</p>
             </div>
             <div class="feature-card">
-                <img src="https://i.pinimg.com/236x/c9/4a/2c/c94a2cd8840594fcd815bc35eed79688.jpg" alt="Poster 3">
-                <h3>Abstract Art</h3>
-                <p>Bring your walls to life with stunning abstract designs.</p>
+                <img src="https://i.pinimg.com/474x/31/28/c7/3128c7c2d485b0f021bdb7425a9f4b82.jpg" alt="Poster 3">
+                <h3>Premium Quality</h3>
+                <p>Enjoy the finest quality prints with vibrant colors and durability.</p>
             </div>
         </div>
     </section>
 
     <section id="genres" class="genres">
-        <h2>Genres</h2>
+        <h2>Explore Genres</h2>
         <div class="genres-grid">
             <div class="genre-card">
                 <img src="https://i.pinimg.com/236x/0a/9c/b6/0a9cb6b1b96a2b795fe5551b0a11bd66.jpg" alt="Sports">
@@ -333,18 +368,14 @@
     </section>
 
     <section id="reviews" class="reviews">
-        <h2>What Our Customers Say</h2>
+        <h2>Customer Reviews</h2>
         <div class="review">
             <h3>John Doe</h3>
-            <p>"The posters are simply amazing! My room has never looked better."</p>
+            <p>"Absolutely stunning posters! My room has never looked better."</p>
         </div>
         <div class="review">
             <h3>Jane Smith</h3>
-            <p>"Great quality and fast delivery. I’ll definitely shop here again!"</p>
-        </div>
-        <div class="review">
-            <h3>Chris Lee</h3>
-            <p>"Love the variety of designs. There’s something for everyone."</p>
+            <p>"Amazing quality and fast delivery. Will order again!"</p>
         </div>
     </section>
 
