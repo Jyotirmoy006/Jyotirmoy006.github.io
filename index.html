@@ -124,53 +124,28 @@
 
         .features {
             padding: 50px;
-            background: linear-gradient(to bottom, black, #222);
-            color: gold;
-            text-align: center;
-        }
-
-        .features h2 {
-            margin-bottom: 30px;
-            font-size: 2.5em;
+            background: black;
         }
 
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 20px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
         }
 
         .feature-card {
             background: #333;
             padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+            color: gold;
         }
 
         .feature-card img {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
             border-radius: 10px;
             margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 10px;
-            font-size: 1.8em;
-        }
-
-        .feature-card p {
-            font-size: 1em;
-            line-height: 1.6;
         }
 
         .genres {
@@ -210,36 +185,6 @@
             padding: 15px;
         }
 
-        .reviews {
-            padding: 50px;
-            background: black;
-            color: gold;
-            text-align: center;
-        }
-
-        .reviews h2 {
-            margin-bottom: 30px;
-            font-size: 2.5em;
-        }
-
-        .review {
-            margin-bottom: 20px;
-            padding: 20px;
-            background: #333;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
-            color: gold;
-        }
-
-        .review h3 {
-            margin-bottom: 10px;
-            font-size: 1.5em;
-        }
-
-        .review p {
-            font-size: 1.2em;
-        }
-
         footer {
             text-align: center;
             padding: 20px;
@@ -262,7 +207,6 @@
                 <li><a href="#shop">Shop</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#genres">Genres</a></li>
-                <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -287,17 +231,17 @@
             <div class="feature-card">
                 <img src="https://i.pinimg.com/474x/b8/4c/f9/b84cf9ca583f360e40a07aa593e9110b.jpg" alt="Poster 1">
                 <h3>Trending Designs</h3>
-                <p>Explore the most popular posters loved by our community, each crafted with attention to detail and style.</p>
+                <p>Explore the most popular posters loved by our community.</p>
             </div>
             <div class="feature-card">
                 <img src="https://i.pinimg.com/236x/30/a1/6e/30a16e3f3520ba6db34b96bc2726f899.jpg" alt="Poster 2">
                 <h3>Custom Posters</h3>
-                <p>Create one-of-a-kind posters tailored to your vision, making your space truly personal.</p>
+                <p>Create personalized posters to match your vibe.</p>
             </div>
             <div class="feature-card">
                 <img src="https://i.pinimg.com/236x/c9/4a/2c/c94a2cd8840594fcd815bc35eed79688.jpg" alt="Poster 3">
                 <h3>Abstract Art</h3>
-                <p>Immerse yourself in bold and captivating abstract designs that ignite creativity.</p>
+                <p>Bring your walls to life with stunning abstract designs.</p>
             </div>
         </div>
     </section>
@@ -305,7 +249,6 @@
     <section id="genres" class="genres">
         <h2>Genres</h2>
         <div class="genres-grid">
-            <div class="genres-grid">
             <div class="genre-card">
                 <img src="https://i.pinimg.com/236x/0a/9c/b6/0a9cb6b1b96a2b795fe5551b0a11bd66.jpg" alt="Sports">
                 <h3>Sports</h3>
@@ -339,7 +282,7 @@
                 <h3>Music</h3>
             </div>
             <div class="genre-card">
-                <img src="https://i.pinimg.com/474x/3b/64/c9/3b64c964dcd5b945310ec1271739f75d.jpg" alt="Religion and culture">
+                <img src="https://i.pinimg.com/474x/3b/64/c9/3b64c964dcd5b945310ec1271739f75d.jpg" alt="Religion and Culture">
                 <h3>Religion and Culture</h3>
             </div>
             <div class="genre-card">
@@ -354,18 +297,6 @@
                 <img src="https://i.pinimg.com/236x/c8/25/e6/c825e6fe041f5e87afe7e021342773ad.jpg" alt="Fantasy">
                 <h3>Fantasy</h3>
             </div>
-        </div>
-    </section>
-
-    <section id="reviews" class="reviews">
-        <h2>Customer Reviews</h2>
-        <div class="review">
-            <h3>Jane Doe</h3>
-            <p>"Absolutely love the designs! They transformed my room into a cozy space."</p>
-        </div>
-        <div class="review">
-            <h3>John Smith</h3>
-            <p>"Great quality and amazing variety. Highly recommend!"</p>
         </div>
     </section>
 
