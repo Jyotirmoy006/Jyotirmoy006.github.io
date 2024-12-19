@@ -160,16 +160,11 @@
             font-size: 2.5em;
         }
 
-        .genres-carousel {
-            display: flex;
-            overflow: hidden;
-            position: relative;
-            justify-content: center;
-        }
-
-        .genres-carousel .genres-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
+        .genres-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-items: center;
         }
 
         .genre-card {
@@ -177,7 +172,6 @@
             border-radius: 10px;
             overflow: hidden;
             width: 300px;
-            margin: 0 10px;
         }
 
         .genre-card img {
@@ -229,24 +223,6 @@
         footer p {
             font-size: 0.9em;
             color: gold;
-        }
-
-        .carousel-nav {
-            margin-top: 20px;
-        }
-
-        .carousel-nav button {
-            padding: 10px 20px;
-            background: gold;
-            border: none;
-            color: black;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 0 5px;
-        }
-
-        .carousel-nav button:hover {
-            background: #ffd700;
         }
 
     </style>
@@ -302,45 +278,43 @@
 
     <section id="genres" class="genres">
         <h2>Genres</h2>
-        <div class="genres-carousel">
-            <div class="genres-track">
-                <div class="genre-card">
-                    <img src="https://i.pinimg.com/236x/0a/9c/b6/0a9cb6b1b96a2b795fe5551b0a11bd66.jpg" alt="Sports">
-                    <h3>Sports</h3>
-                </div>
-                <div class="genre-card">
-                    <img src="https://i.pinimg.com/236x/2f/de/98/2fde98c959b414caa067d09154c8f86b.jpg" alt="Anime">
-                    <h3>Anime</h3>
-                </div>
-                <div class="genre-card">
-                    <img src="https://i.pinimg.com/236x/fd/d9/fb/fdd9fb6d98f4d6426afbba0688aa8762.jpg" alt="Motivational">
-                    <h3>Motivational</h3>
-                </div>
-                <div class="genre-card">
-                    <img src="https://i.pinimg.com/236x/9e/c8/ba/9ec8bac3119a7127998dc8ade76326db.jpg" alt="Nature">
-                    <h3>Nature</h3>
-                </div>
-                <div class="genre-card">
-                    <img src="https://i.pinimg.com/236x/a2/6b/5e/a26b5e12b42a3f3b43ed30be15992692.jpg" alt="Sci-Fi">
-                    <h3>Sci-Fi</h3>
-                </div>
-                <div class="genre-card">
-                    <img src="https://i.pinimg.com/236x/1b/5e/d4/1b5ed46684d3de6fb9b28ddaba0bcfe1.jpg" alt="Fantasy">
-                    <h3>Fantasy</h3>
-                </div>
-                <div class="genre-card">
-                    <img src="https://i.pinimg.com/236x/89/4f/aa/894faaf2e202a4f9bd688fe8aa2303e2.jpg" alt="Travel">
-                    <h3>Travel</h3>
-                </div>
-                <div class="genre-card">
-                    <img src="https://i.pinimg.com/236x/b7/5e/b6/b75eb6c2f87e1e3c5e04b35a6b91b579.jpg" alt="Music">
-                    <h3>Music</h3>
-                </div>
+        <div class="genres-grid">
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/0a/9c/b6/0a9cb6b1b96a2b795fe5551b0a11bd66.jpg" alt="Sports">
+                <h3>Sports</h3>
             </div>
-        </div>
-        <div class="carousel-nav">
-            <button id="prevBtn">Prev</button>
-            <button id="nextBtn">Next</button>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/2f/de/98/2fde98c959b414caa067d09154c8f86b.jpg" alt="Anime">
+                <h3>Anime</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/fd/d9/fb/fdd9fb6d98f4d6426afbba0688aa8762.jpg" alt="Motivational">
+                <h3>Motivational</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/9e/c8/ba/9ec8bac3119a7127998dc8ade76326db.jpg" alt="Nature">
+                <h3>Nature</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/a2/6b/5e/a26b5e12b42a3f3b43ed30be15992692.jpg" alt="Sci-Fi">
+                <h3>Sci-Fi</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/1b/5e/d4/1b5ed46684d3de6fb9b28ddaba0bcfe1.jpg" alt="Fantasy">
+                <h3>Fantasy</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/89/4f/aa/894faaf2e202a4f9bd688fe8aa2303e2.jpg" alt="Travel">
+                <h3>Travel</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/b7/5e/b6/b75eb6c2f87e1e3c5e04b35a6b91b579.jpg" alt="Music">
+                <h3>Music</h3>
+            </div>
+            <div class="genre-card">
+                <img src="https://i.pinimg.com/236x/ab/37/fc/ab37fcb7b222d4379c63c2306f22919f.jpg" alt="Artistic">
+                <h3>Artistic</h3>
+            </div>
         </div>
     </section>
 
@@ -359,33 +333,8 @@
     <footer>
         <p>&copy; 2024 Vibe Crafters. All Rights Reserved.</p>
     </footer>
-
-    <script>
-        const track = document.querySelector('.genres-track');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-
-// Initialize variables
-let currentIndex = 0;
-const cardWidth = 320; // Card width + margin
-const totalCards = track.children.length;
-
-// Event listeners
-prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
-    updateCarousel();
-});
-
-nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % totalCards;
-    updateCarousel();
-});
-
-// Function to update carousel position
-function updateCarousel() {
-    track.style.transition = 'transform 0.5s ease-in-out';
-    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-}
+</body>
+</html>
 
 
 
