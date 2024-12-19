@@ -133,6 +133,14 @@
             padding: 50px;
             background: #121212;
             border-top: 5px solid #2a2a4f;
+            text-align: center;
+        }
+
+        .features h2 {
+            margin-bottom: 40px;
+            font-size: 3em;
+            color: #87ceeb;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
         .features-grid {
@@ -150,6 +158,7 @@
             text-align: center;
             color: #f5faff;
             transition: transform 0.3s, box-shadow 0.3s;
+            max-width: 320px;
         }
 
         .feature-card:hover {
@@ -163,6 +172,17 @@
             border-radius: 10px;
             margin-bottom: 20px;
             object-fit: cover;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 1.1em;
+            line-height: 1.4;
+            color: #dcdcdc;
         }
 
         .genres {
@@ -183,8 +203,6 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            justify-content: center;
-            align-items: center;
         }
 
         .genre-card {
@@ -211,52 +229,56 @@
             padding: 15px;
             color: #f5faff;
         }
-
-        .genres-grid a {
-            text-decoration: none;
-        }
-
-        .features-grid a {
-            text-decoration: none;
-        }
-
         .reviews {
-            padding: 50px;
-            background: #121212;
-            color: #f5faff;
-            text-align: center;
-            border-top: 5px solid #2a2a4f;
-        }
+        padding: 50px;
+        background: #121212;
+        color: #f5faff;
+        text-align: center;
+        border-top: 5px solid #2a2a4f;
+    }
 
-        .reviews h2 {
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            color: #87ceeb;
-        }
+    .reviews h2 {
+        margin-bottom: 30px;
+        font-size: 2.5em;
+        color: #87ceeb;
+    }
 
-        .review {
-            margin-bottom: 20px;
-            padding: 20px;
-            background: #1e1e3f;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-            color: #f5faff;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+    .reviews-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        justify-content: center;
+    }
 
-        .review:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 1);
-        }
+    .review-card {
+        background: #1e1e3f;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+        color: #f5faff;
+        text-align: left;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
 
-        .review h3 {
-            margin-bottom: 10px;
-            font-size: 1.5em;
-        }
+    .review-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 1);
+    }
 
-        .review p {
-            font-size: 1.2em;
-        }
+    .review-card h3 {
+        margin-bottom: 10px;
+        font-size: 1.5em;
+    }
+
+    .review-card p {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+
+    .review-card span {
+        font-size: 1.5em;
+        color: #ffdd57; /* Star rating color */
+    }
 
         footer {
             text-align: center;
@@ -301,102 +323,104 @@
     </section>
 
     <section id="shop" class="features">
-        <h2>Our Features</h2>
-        <div class="features-grid">
-            <a href="Trending Designs.html">
-                <div class="feature-card">
-                    <img src="https://i.pinimg.com/474x/b8/4c/f9/b84cf9ca583f360e40a07aa593e9110b.jpg" alt="Poster 1">
-                    <h3>Trending Designs</h3>
-                    <p>Explore the latest and trending designs tailored to modern aesthetics.</p>
-                </div>
-            </a>
-            <a href="Custom Creations.html">
-                <div class="feature-card">
-                    <img src="https://i.pinimg.com/236x/30/a1/6e/30a16e3f3520ba6db34b96bc2726f899.jpg" alt="Poster 2">
-                    <h3>Custom Creations</h3>
-                    <p>Create personalized designs that speak your story.</p>
-                </div>
-            </a>
-            <a href="Premium Quality.html">
-                <div class="feature-card">
-                    <img src="https://i.pinimg.com/236x/c9/4a/2c/c94a2cd8840594fcd815bc35eed79688.jpg" alt="Poster 3">
-                    <h3>Premium Quality</h3>
-                    <p>Enjoy the finest quality prints with vibrant colors and durability.</p>
-                </div>
-            </a>
-        </div>
-    </section>
+    <h2>Our Features</h2>
+    <div class="features-grid">
+        <a href="TrendingDesigns.html" style="text-decoration: none; color: inherit;">
+            <div class="feature-card">
+                <img src="https://i.pinimg.com/474x/b8/4c/f9/b84cf9ca583f360e40a07aa593e9110b.jpg" alt="Trending Designs">
+                <h3>Trending Designs</h3>
+                <p>Explore the latest and trending designs tailored to modern aesthetics.</p>
+            </div>
+        </a>
+        <a href="CustomCreations.html" style="text-decoration: none; color: inherit;">
+            <div class="feature-card">
+                <img src="https://i.pinimg.com/236x/30/a1/6e/30a16e3f3520ba6db34b96bc2726f899.jpg" alt="Custom Creations">
+                <h3>Custom Creations</h3>
+                <p>Create personalized designs that speak your story.</p>
+            </div>
+        </a>
+        <a href="PremiumQuality.html" style="text-decoration: none; color: inherit;">
+            <div class="feature-card">
+                <img src="https://i.pinimg.com/236x/c9/4a/2c/c94a2cd8840594fcd815bc35eed79688.jpg" alt="Premium Quality">
+                <h3>Premium Quality</h3>
+                <p>Enjoy the finest quality prints with vibrant colors and durability.</p>
+            </div>
+        </a>
+    </div>
+</section>
+
+
 
     <section id="genres" class="genres">
         <h2>Explore Genres</h2>
         <div class="genres-grid">
-            <a href="Sports.html">
+            <a href="Sports.html" style="text-decoration: none; color: inherit;">
                 <div class="genre-card">
                     <img src="https://i.pinimg.com/236x/0a/9c/b6/0a9cb6b1b96a2b795fe5551b0a11bd66.jpg" alt="Sports">
                     <h3>Sports</h3>
                 </div>
             </a>
-            <a href="Anime.html">
-                <div class="genre-card                ">
+            <a href="Anime.html" style="text-decoration: none; color: inherit;">
+                <div class="genre-card ">
                     <img src="https://i.pinimg.com/236x/2f/de/98/2fde98c959b414caa067d09154c8f86b.jpg" alt="Anime">
                     <h3>Anime</h3>
                 </div>
             </a>
-            <a href="Motivational.html">
+            <a href="Motivational.html" style="text-decoration: none; color: inherit;">
                 <div class="genre-card">
                     <img src="https://i.pinimg.com/236x/fd/d9/fb/fdd9fb6d98f4d6426afbba0688aa8762.jpg" alt="Motivational">
                     <h3>Motivational</h3>
                 </div>
             </a>
-            <a href="Nature.html">
+            <a href="Nature.html" style="text-decoration: none; color: inherit;">
                 <div class="genre-card">
                     <img src="https://i.pinimg.com/236x/9e/c8/ba/9ec8bac3119a7127998dc8ade76326db.jpg" alt="Nature">
                     <h3>Nature</h3>
                 </div>
             </a>
-            <a href="Manga.html">
+            <a href="Manga.html" style="text-decoration: none; color: inherit;">
                 <div class="genre-card">
                     <img src="https://i.pinimg.com/236x/ab/79/e0/ab79e037d02f6002079d52b7d3c000de.jpg" alt="Manga">
                     <h3>Manga</h3>
                 </div>
             </a>
-            <a href="Comics.html">
+            <a href="Comics.html" style="text-decoration: none; color: inherit;">
                 <div class="genre-card">
                     <img src="https://i.pinimg.com/236x/c2/47/6d/c2476d1fb79012b2212b97994b8e43a6.jpg" alt="Comics">
                     <h3>Comics</h3>
                 </div>
             </a>
-            <a href="Movies.html">
+            <a href="Movies.html" style="text-decoration: none; color: inherit;">
                 <div class="genre-card">
                     <img src="https://i.pinimg.com/474x/e7/88/82/e7888275d9816a3c5d01e689e27f3dc8.jpg" alt="Movies">
                     <h3>Movies</h3>
                 </div>
             </a>
-            <a href="Music.html">
+            <a href="Music.html" style="text-decoration: none; color: inherit;">
                 <div class="genre-card">
                     <img src="https://i.pinimg.com/474x/02/9d/58/029d5865b7fd8b5dd13afc44cc215b21.jpg" alt="Music">
                     <h3>Music</h3>
                 </div>
             </a>
-            <a href="Religion and Culture.html">
+            <a href="Religion and Culture.html" style="text-decoration: none; color: inherit;">
                 <div class="genre-card">
                     <img src="https://i.pinimg.com/474x/3b/64/c9/3b64c964dcd5b945310ec1271739f75d.jpg" alt="Religion and Culture">
                     <h3>Religion and Culture</h3>
                 </div>
             </a>
-            <a href="Korean.html">
+            <a href="Korean.html" style="text-decoration: none; color: inherit;">
                 <div class="genre-card">
                     <img src="https://i.pinimg.com/236x/2b/19/0a/2b190a20b1c9b442c726b220a28a84cd.jpg" alt="Korean">
                     <h3>Korean</h3>
                 </div>
             </a>
-            <a href="Cars.html">
+            <a href="Cars.html" style="text-decoration: none; color: inherit;">
                 <div class="genre-card">
                     <img src="https://i.pinimg.com/474x/0e/71/bb/0e71bb162293b8459f67e0810d574bac.jpg" alt="Cars">
                     <h3>Cars</h3>
                 </div>
             </a>
-            <a href="Fantasy.html">
+            <a href="Fantasy.html" style="text-decoration: none; color: inherit;">
                 <div class="genre-card">
                     <img src="https://i.pinimg.com/236x/c8/25/e6/c825e6fe041f5e87afe7e021342773ad.jpg" alt="Fantasy">
                     <h3>Fantasy</h3>
@@ -406,20 +430,33 @@
     </section>
 
     <section id="reviews" class="reviews">
-        <h2>Customer Reviews</h2>
-        <div class="review">
+    <h2>What Our Customers Say</h2>
+    <div class="reviews-grid">
+        <div class="review-card">
             <h3>Jane Doe</h3>
             <p>"Absolutely love the posters! The quality and design exceeded my expectations."</p>
+            <span>⭐⭐⭐⭐⭐</span>
         </div>
-        <div class="review">
+        <div class="review-card">
             <h3>John Smith</h3>
             <p>"The custom creations are fantastic. I got exactly what I wanted for my living room."</p>
+            <span>⭐⭐⭐⭐⭐</span>
         </div>
-    </section>
+        <div class="review-card">
+            <h3>Emily White</h3>
+            <p>"Amazing variety and quality. Definitely coming back for more."</p>
+            <span>⭐⭐⭐⭐⭐</span>
+        </div>
+        <div class="review-card">
+            <h3>Mark Lee</h3>
+            <p>"Prompt delivery and the posters look stunning on my walls."</p>
+            <span>⭐⭐⭐⭐</span>
+        </div>
+    </div>
+</section>
 
     <footer>
         <p>&copy; 2024 Vibe Crafters. All rights reserved.</p>
     </footer>
 </body>
 </html>
-
