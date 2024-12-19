@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Crafters</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: black;
+            color: gold;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: gold;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #ffd700;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://source.unsplash.com/1600x900/?poster,art') no-repeat center center/cover;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: gold;
+        }
+
+        .hero-content h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .hero-content a {
+            padding: 10px 20px;
+            font-size: 1em;
+            text-decoration: none;
+            color: black;
+            background: gold;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .hero-content a:hover {
+            background: #ffd700;
+        }
+
+        .about {
+            padding: 50px;
+            text-align: center;
+            background: black;
+        }
+
+        .about h2 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .about p {
+            font-size: 1.2em;
+            line-height: 1.5;
+            color: gold;
+        }
+
+        .features {
+            padding: 50px;
+            background: black;
+        }
+
+        .features-grid {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .feature-card {
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            color: gold;
+        }
+
+        .feature-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .genres {
+            padding: 50px;
+            background: black;
+            color: gold;
+            text-align: center;
+        }
+
+        .genres h2 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .genres-carousel {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            justify-content: center;
+        }
+
+        .genres-carousel .genres-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .genre-card {
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 300px;
+            margin: 0 10px;
+        }
+
+        .genre-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .genre-card h3 {
+            padding: 15px;
+        }
+
+        .reviews {
+            padding: 50px;
+            background: black;
+            color: gold;
+            text-align: center;
+        }
+
+        .reviews h2 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .review {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+            color: gold;
+        }
+
+        .review h3 {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .review p {
+            font-size: 1.2em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: black;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: gold;
+        }
+
+        .carousel-nav {
+            margin-top: 20px;
+        }
+
+        .carousel-nav button {
+            padding: 10px 20px;
+            background: gold;
+            border: none;
+            color: black;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .carousel-nav button:hover {
+            background: #ffd700;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Vibe Crafters</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#genres">Genres</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Vibe Crafters</h1>
+            <p>Find your perfect design or create your own masterpiece.</p>
+            <a href="#shop">Start Shopping</a>
+        </div>
+    </div>
+
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>At Vibe Crafters, we believe that every wall deserves a story. With a collection of unique, inspiring, and vibrant posters, we help you craft the perfect vibe for your space. From custom designs to trending artwork, we cater to all your aesthetic needs.</p>
+    </section>
+
+    <section id="shop" class="features">
+        <h2>Our Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <img src="https://i.pinimg.com/474x/b8/4c/f9/b84cf9ca583f360e40a07aa593e9110b.jpg" alt="Poster 1">
+                <h3>Trending Designs</h3>
+                <p>Explore the most popular posters loved by our community.</p>
+            </div>
+            <div class="feature-card">
+                <img src="https://i.pinimg.com/236x/30/a1/6e/30a16e3f3520ba6db34b96bc2726f899.jpg" alt="Poster 2">
+                <h3>Custom Posters</h3>
+                <p>Create personalized posters to match your vibe.</p>
+            </div>
+            <div class="feature-card">
+                <img src="https://i.pinimg.com/236x/c9/4a/2c/c94a2cd8840594fcd815bc35eed79688.jpg" alt="Poster 3">
+                <h3>Abstract Art</h3>
+                <p>Bring your walls to life with stunning abstract designs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="genres" class="genres">
+        <h2>Genres</h2>
+        <div class="genres-carousel">
+            <div class="genres-track">
+                <div class="genre-card">
+                    <img src="https://i.pinimg.com/236x/0a/9c/b6/0a9cb6b1b96a2b795fe5551b0a11bd66.jpg" alt="Sports">
+                    <h3>Sports</h3>
+                </div>
+                <div class="genre-card">
+                    <img src="https://i.pinimg.com/236x/2f/de/98/2fde98c959b414caa067d09154c8f86b.jpg" alt="Anime">
+                    <h3>Anime</h3>
+                </div>
+                <div class="genre-card">
+                    <img src="https://i.pinimg.com/236x/fd/d9/fb/fdd9fb6d98f4d6426afbba0688aa8762.jpg" alt="Motivational">
+                    <h3>Motivational</h3>
+                </div>
+                <div class="genre-card">
+                    <img src="https://i.pinimg.com/236x/9e/c8/ba/9ec8bac3119a7127998dc8ade76326db.jpg" alt="Nature">
+                    <h3>Nature</h3>
+                </div>
+                <div class="genre-card">
+                    <img src="https://i.pinimg.com/236x/a2/6b/5e/a26b5e12b42a3f3b43ed30be15992692.jpg" alt="Sci-Fi">
+                    <h3>Sci-Fi</h3>
+                </div>
+                <div class="genre-card">
+                    <img src="https://i.pinimg.com/236x/1b/5e/d4/1b5ed46684d3de6fb9b28ddaba0bcfe1.jpg" alt="Fantasy">
+                    <h3>Fantasy</h3>
+                </div>
+                <div class="genre-card">
+                    <img src="https://i.pinimg.com/236x/89/4f/aa/894faaf2e202a4f9bd688fe8aa2303e2.jpg" alt="Travel">
+                    <h3>Travel</h3>
+                </div>
+                <div class="genre-card">
+                    <img src="https://i.pinimg.com/236x/b7/5e/b6/b75eb6c2f87e1e3c5e04b35a6b91b579.jpg" alt="Music">
+                    <h3>Music</h3>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-nav">
+            <button id="prevBtn">Prev</button>
+            <button id="nextBtn">Next</button>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews">
+        <h2>Customer Reviews</h2>
+        <div class="review">
+            <h3>Jane Doe</h3>
+            <p>"Absolutely love the designs! They transformed my room into a cozy space."</p>
+        </div>
+        <div class="review">
+            <h3>John Smith</h3>
+            <p>"Great quality and amazing variety. Highly recommend!"</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Vibe Crafters. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const track = document.querySelector('.genres-track');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentIndex = 0;
+        const cardWidth = 320; // Card width (300px) + margin (20px)
+        const totalCards = track.children.length;
+        const maxIndex = totalCards - 3; // Visible cards
+
+        prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+          }  
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < maxIndex) {
+              currentIndex++;
+              track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+            }
+        });
+
+    </script>
+</body>
+</html>
