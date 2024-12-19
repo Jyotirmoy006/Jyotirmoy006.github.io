@@ -14,15 +14,15 @@
         }
 
         body {
-            background: black;
-            color: gold;
+            background: teal;
+            color: coral;
             overflow-x: hidden;
         }
 
         header {
             position: fixed;
             width: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 128, 128, 0.9);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -47,12 +47,12 @@
 
         header nav ul li a {
             text-decoration: none;
-            color: gold;
+            color: coral;
             transition: color 0.3s;
         }
 
         header nav ul li a:hover {
-            color: #ffd700;
+            color: #ff7f50;
         }
 
         .hero {
@@ -72,13 +72,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 128, 128, 0.5);
         }
 
         .hero-content {
             position: relative;
             z-index: 10;
-            color: gold;
+            color: coral;
         }
 
         .hero-content h1 {
@@ -95,20 +95,20 @@
             padding: 10px 20px;
             font-size: 1em;
             text-decoration: none;
-            color: black;
-            background: gold;
+            color: teal;
+            background: coral;
             border-radius: 5px;
             transition: background 0.3s;
         }
 
         .hero-content a:hover {
-            background: #ffd700;
+            background: #ff7f50;
         }
 
         .about {
             padding: 50px;
             text-align: center;
-            background: black;
+            background: teal;
         }
 
         .about h2 {
@@ -119,12 +119,12 @@
         .about p {
             font-size: 1.2em;
             line-height: 1.5;
-            color: gold;
+            color: coral;
         }
 
         .features {
             padding: 50px;
-            background: black;
+            background: teal;
         }
 
         .features-grid {
@@ -134,24 +134,26 @@
         }
 
         .feature-card {
-            background: #333;
+            background: #007575;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
             text-align: center;
-            color: gold;
+            color: coral;
         }
 
         .feature-card img {
             width: 100%;
+            height: 220px;
             border-radius: 10px;
             margin-bottom: 20px;
+            object-fit: cover;
         }
 
         .genres {
             padding: 50px;
-            background: black;
-            color: gold;
+            background: teal;
+            color: coral;
             text-align: center;
         }
 
@@ -169,7 +171,7 @@
         }
 
         .genre-card {
-            background: #333;
+            background: #007575;
             border-radius: 10px;
             overflow: hidden;
             text-align: center;
@@ -177,7 +179,7 @@
 
         .genre-card img {
             width: 100%;
-            height: 200px;
+            height: 270px;
             object-fit: cover;
         }
 
@@ -185,15 +187,45 @@
             padding: 15px;
         }
 
+        .reviews {
+            padding: 50px;
+            background: teal;
+            color: coral;
+            text-align: center;
+        }
+
+        .reviews h2 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .review {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #007575;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+            color: coral;
+        }
+
+        .review h3 {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .review p {
+            font-size: 1.2em;
+        }
+
         footer {
             text-align: center;
             padding: 20px;
-            background: black;
+            background: teal;
         }
 
         footer p {
             font-size: 0.9em;
-            color: gold;
+            color: coral;
         }
 
     </style>
@@ -207,6 +239,7 @@
                 <li><a href="#shop">Shop</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#genres">Genres</a></li>
+                <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -282,7 +315,7 @@
                 <h3>Music</h3>
             </div>
             <div class="genre-card">
-                <img src="https://i.pinimg.com/474x/3b/64/c9/3b64c964dcd5b945310ec1271739f75d.jpg" alt="Religion and Culture">
+                <img src="https://i.pinimg.com/474x/3b/64/c9/3b64c964dcd5b945310ec1271739f75d.jpg" alt="Religion and culture">
                 <h3>Religion and Culture</h3>
             </div>
             <div class="genre-card">
@@ -300,8 +333,25 @@
         </div>
     </section>
 
+    <section id="reviews" class="reviews">
+        <h2>Reviews</h2>
+        <div class="review">
+            <h3>Amazing Posters!</h3>
+            <p>I love the variety and quality. Totally worth it!</p>
+        </div>
+        <div class="review">
+            <h3>Perfect for my space!</h3>
+            <p>The custom posters matched my vibe perfectly. Highly recommend!</p>
+        </div>
+        <div class="review">
+            <h3>Quick Delivery</h3>
+            <p>The posters arrived earlier than expected and in great condition.</p>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2024 Vibe Crafters. All Rights Reserved.</p>
+        <p>&copy; 2024 Vibe Crafters. All rights reserved.</p>
     </footer>
 </body>
-</html>
+</html
+
