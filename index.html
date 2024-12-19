@@ -124,28 +124,53 @@
 
         .features {
             padding: 50px;
-            background: black;
+            background: linear-gradient(to bottom, black, #222);
+            color: gold;
+            text-align: center;
+        }
+
+        .features h2 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
         }
 
         .features-grid {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
         }
 
         .feature-card {
             background: #333;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
             text-align: center;
-            color: gold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
         }
 
         .feature-card img {
             width: 100%;
+            height: 200px;
+            object-fit: cover;
             border-radius: 10px;
             margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.8em;
+        }
+
+        .feature-card p {
+            font-size: 1em;
+            line-height: 1.6;
         }
 
         .genres {
@@ -164,14 +189,15 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            justify-items: center;
+            justify-content: center;
+            align-items: center;
         }
 
         .genre-card {
             background: #333;
             border-radius: 10px;
             overflow: hidden;
-            width: 300px;
+            text-align: center;
         }
 
         .genre-card img {
@@ -261,17 +287,17 @@
             <div class="feature-card">
                 <img src="https://i.pinimg.com/474x/b8/4c/f9/b84cf9ca583f360e40a07aa593e9110b.jpg" alt="Poster 1">
                 <h3>Trending Designs</h3>
-                <p>Explore the most popular posters loved by our community.</p>
+                <p>Explore the most popular posters loved by our community, each crafted with attention to detail and style.</p>
             </div>
             <div class="feature-card">
                 <img src="https://i.pinimg.com/236x/30/a1/6e/30a16e3f3520ba6db34b96bc2726f899.jpg" alt="Poster 2">
                 <h3>Custom Posters</h3>
-                <p>Create personalized posters to match your vibe.</p>
+                <p>Create one-of-a-kind posters tailored to your vision, making your space truly personal.</p>
             </div>
             <div class="feature-card">
                 <img src="https://i.pinimg.com/236x/c9/4a/2c/c94a2cd8840594fcd815bc35eed79688.jpg" alt="Poster 3">
                 <h3>Abstract Art</h3>
-                <p>Bring your walls to life with stunning abstract designs.</p>
+                <p>Immerse yourself in bold and captivating abstract designs that ignite creativity.</p>
             </div>
         </div>
     </section>
@@ -296,36 +322,32 @@
                 <h3>Nature</h3>
             </div>
             <div class="genre-card">
-                <img src="https://i.pinimg.com/236x/ab/79/e0/ab79e037d02f6002079d52b7d3c000de.jpg" alt="Manga">
-                <h3>Manga</h3>
+                <img src="https://i.pinimg.com/236x/a2/6b/5e/a26b5e12b42a3f3b43ed30be15992692.jpg" alt="Sci-Fi">
+                <h3>Sci-Fi</h3>
             </div>
             <div class="genre-card">
-                <img src="https://i.pinimg.com/236x/c2/47/6d/c2476d1fb79012b2212b97994b8e43a6.jpg" alt="Comics">
-                <h3>Comics</h3>
+                <img src="https://i.pinimg.com/236x/1b/5e/d4/1b5ed46684d3de6fb9b28ddaba0bcfe1.jpg" alt="Fantasy">
+                <h3>Fantasy</h3>
             </div>
             <div class="genre-card">
-                <img src="https://i.pinimg.com/474x/e7/88/82/e7888275d9816a3c5d01e689e27f3dc8.jpg" alt="Movies">
-                <h3>Movies</h3>
+                <img src="https://i.pinimg.com/236x/89/4f/aa/894faaf2e202a4f9bd688fe8aa2303e2.jpg" alt="Travel">
+                <h3>Travel</h3>
             </div>
             <div class="genre-card">
-                <img src="https://i.pinimg.com/474x/02/9d/58/029d5865b7fd8b5dd13afc44cc215b21.jpg" alt="Music">
+                <img src="https://i.pinimg.com/236x/b7/5e/b6/b75eb6c2f87e1e3c5e04b35a6b91b579.jpg" alt="Music">
                 <h3>Music</h3>
             </div>
             <div class="genre-card">
-                <img src="https://i.pinimg.com/474x/3b/64/c9/3b64c964dcd5b945310ec1271739f75d.jpg" alt="Religion and culture">
-                <h3>Religion and Culture</h3>
-            </div>
-            <div class="genre-card">
-                <img src="https://i.pinimg.com/236x/2b/19/0a/2b190a20b1c9b442c726b220a28a84cd.jpg" alt="Korean">
+                <img src="https://i.pinimg.com/236x/c4/d2/60/c4d260d6b083a245a6477b30a0174ed6.jpg" alt="Korean">
                 <h3>Korean</h3>
             </div>
             <div class="genre-card">
-                <img src="https://i.pinimg.com/474x/0e/71/bb/0e71bb162293b8459f67e0810d574bac.jpg" alt="Cars">
+                <img src="https://i.pinimg.com/236x/a4/bc/7a/a4bc7a36b9b222cf4ec40d7dd9173c71.jpg" alt="Cars">
                 <h3>Cars</h3>
             </div>
             <div class="genre-card">
-                <img src="https://i.pinimg.com/236x/c8/25/e6/c825e6fe041f5e87afe7e021342773ad.jpg" alt="Fantasy">
-                <h3>Fantasy</h3>
+                <img src="https://i.pinimg.com/236x/aa/34/ef/aa34ef318a1bd47f4c3b94aaea08c120.jpg" alt="Memes">
+                <h3>Memes</h3>
             </div>
         </div>
     </section>
@@ -345,11 +367,5 @@
     <footer>
         <p>&copy; 2024 Vibe Crafters. All Rights Reserved.</p>
     </footer>
-</body>
-</html>
-
-
-
-    </script>
 </body>
 </html>
