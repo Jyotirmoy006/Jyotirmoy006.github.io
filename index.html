@@ -362,58 +362,31 @@
 
     <script>
         const track = document.querySelector('.genres-track');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
 
-// Duplicate the first and last 3 cards for smooth looping
-        const cards = Array.from(track.children);
-        const totalVisible = 3;
-        const cardWidth = 320; // Card width + margin
-
-// Clone and append cards
-        cards.slice(0, totalVisible).forEach(card => {
-    const clone = card.cloneNode(true);
-    track.appendChild(clone);
-});
-cards.slice(-totalVisible).forEach(card => {
-    const clone = card.cloneNode(true);
-    track.insertBefore(clone, track.firstChild);
-});
-
-// Initial state
-let currentIndex = totalVisible; // Start at the first real card
-track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+// Initialize variables
+let currentIndex = 0;
+const cardWidth = 320; // Card width + margin
+const totalCards = track.children.length;
 
 // Event listeners
 prevBtn.addEventListener('click', () => {
-    currentIndex--;
-    track.style.transition = 'transform 0.5s ease-in-out';
-    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-
-    if (currentIndex === 0) {
-        // Wrap around to the real end
-        setTimeout(() => {
-            track.style.transition = 'none';
-            currentIndex = cards.length;
-            track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-        }, 500);
-    }
+    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+    updateCarousel();
 });
 
 nextBtn.addEventListener('click', () => {
-    currentIndex++;
+    currentIndex = (currentIndex + 1) % totalCards;
+    updateCarousel();
+});
+
+// Function to update carousel position
+function updateCarousel() {
     track.style.transition = 'transform 0.5s ease-in-out';
     track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+}
 
-    if (currentIndex === cards.length + totalVisible) {
-        // Wrap around to the real start
-        setTimeout(() => {
-            track.style.transition = 'none';
-            currentIndex = totalVisible;
-            track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-        }, 500);
-    }
-});
 
 
     </script>
