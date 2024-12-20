@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars Genre - Vibe Crafters</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0c0c0c;
+            color: #f5faff;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            background: linear-gradient(90deg, #1a1a1a, #2a2a4f);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #87ceeb;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #f5faff;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #87ceeb;
+        }
+        .cart {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart .cart-icon {
+            font-size: 1.5em;
+            color: #87ceeb;
+        }
+
+        .cart-counter {
+            position: relative;
+            display: inline-block;
+        }
+
+        .cart-counter span {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ff4500;
+            color: #fff;
+            font-size: 0.8em;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://source.unsplash.com/1600x900/?sports') no-repeat center center/cover;
+            position: relative;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(12, 12, 12, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: #f5faff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+        }
+
+        .posters-section {
+            padding: 50px;
+            text-align: center;
+            background: #1a1a1a;
+            border-top: 5px solid #2a2a4f;
+        }
+
+        .posters-section h2 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #87ceeb;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .posters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .poster-card {
+            background: #1e1e3f;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .poster-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 1);
+        }
+
+        .poster-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .poster-card h3 {
+            padding: 10px;
+            color: #f5faff;
+        }
+
+        .poster-card .price {
+            color: #87ceeb;
+            font-size: 1.2em;
+        }
+
+        .poster-card .cart-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .poster-card button {
+            background: #87ceeb;
+            border: none;
+            color: #0c0c0c;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: background 0.3s;
+        }
+
+        .poster-card button:hover {
+            background: #5a9bd4;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #0c0c0c;
+            border-top: 5px solid #2a2a4f;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #f5faff;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Vibe Crafters</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Genres</a></li>
+                <li><a href="#">Reviews</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#cart" class="cart-counter">CART <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Cars Posters</h1>
+            <p>Drive your passion with stunning car posters that fuel your walls!</p>
+        </div>
+    </div>
+
+    <section class="posters-section">
+        <h2>Featured Cars Posters</h2>
+        <div class="posters-grid" id="posters-grid">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Vibe Crafters. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const postersGrid = document.getElementById('posters-grid');
+const cartCount = document.getElementById('cart-count');
+
+let cartItems = 0;
+
+function addToCart() {
+    cartItems++;
+    cartCount.textContent = cartItems;
+}
+
+// Array of posters with specific image URLs and titles
+const posters = [
+    { url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbzI3VaWCI_WLKlFlbTNt7uLdqqOL82IbdEw&s', title: 'Cars' },
+    { url: 'https://images.moneycontrol.com/static-mcnews/2018/06/ashton-martin-red.jpg', title: 'Aston Martin' },
+    { url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBtVeR56KfI56KnLMNlArkaK_oPtyYvRwFTA&s', title: 'Lamborgini' },
+    { url: 'https://preview.redd.it/porsche-911-gt3-poster-v0-zewhz3wxm3vc1.jpg?width=500&format=pjpg&auto=webp&s=16ea2f8cf309b7d27e4e56a6fa71aedd756a339c', title: 'Porsche' },
+    { url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyTVZ_vIDGpWTPzBtix8svGn6opGpyodCExg&s', title: 'Rolls Royce' },
+    { url: 'https://hips.hearstapps.com/hmg-prod/images/14bugatti-divo-99leadgallery-1535035005.jpg', title: 'Bugatti' },
+    { url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlQHC7E6QcWaO4fQQtBOkxqAMfQBi1KHcqVV_MLE8w-nN11d4TbrQq-xriYhHN6h9tfKU&usqp=CAU', title: 'Ferrari'},
+    
+    // Add up to 50 entries...
+];
+// Dynamically add posters to the grid
+posters.forEach((poster, index) => {
+    const posterCard = document.createElement('div');
+    posterCard.className = 'poster-card';
+
+    posterCard.innerHTML = `
+        <img src="${poster.url}" alt="${poster.title}">
+        <h3>${poster.title}</h3>
+        <p class="price">₹50</p>
+        <div class="cart-controls">
+            <button onclick="addToCart()">+</button>
+        </div>
+    `;
+
+    postersGrid.appendChild(posterCard);
+});
+
+    </script>
+</body>
