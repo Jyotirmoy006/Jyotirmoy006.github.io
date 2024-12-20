@@ -55,28 +55,7 @@
         header nav ul li a:hover {
             color: #87ceeb;
         }
-        .cart {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .cart .cart-icon {
-            font-size: 1.5em;
-            color: #87ceeb;
-        }
-
-        .cart .cart-count {
-            position: absolute;
-            top: -5px;
-            right: -10px;
-            background: #ff5733;
-            color: #fff;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 0.9em;
-            font-weight: bold;
-        }
-
+        
 
         .hero {
             height: 100vh;
@@ -135,45 +114,7 @@
             background: #5a9bd4;
             transform: translateY(-3px);
         }
-        /* Cart Dropdown */
-        .cart-dropdown {
-            display: none;
-            position: absolute;
-            top: 40px;
-            right: 0;
-            background: #1a1a1a;
-            color: #f5faff;
-            border: 1px solid #87ceeb;
-            border-radius: 5px;
-            width: 300px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-        }
-
-        .cart-dropdown.active {
-            display: block;
-        }
-
-        .cart-dropdown ul {
-            list-style: none;
-            padding: 10px;
-        }
-
-        .cart-dropdown ul li {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 0;
-            border-bottom: 1px solid #2a2a4f;
-        }
-
-        .cart-dropdown ul li:last-child {
-            border-bottom: none;
-        }
-
-        .cart-dropdown .cart-total {
-            padding: 10px;
-            font-weight: bold;
-            text-align: right;
-        }
+       
 
         .about {
             padding: 50px;
@@ -371,16 +312,7 @@
                 <li><a href="#genres">Genres</a></li>
                 <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li class="cart">
-                    <span class="cart-icon">🛒</span>
-                    <span class="cart-count">0</span>
-                    <div class="cart-dropdown">
-                        <ul id="cart-items">
-                            <li>No items in the cart</li>
-                        </ul>
-                        <div class="cart-total">Total: $0.00</div>
-                    </div>
-                </li>
+                <li><a href="Order.html" style="text-decoration: none; color: inherit;">Order</a></li>
             </ul>
         </nav>
     </header>
@@ -534,51 +466,5 @@
     <footer>
         <p>&copy; 2024 Vibe Crafters. All rights reserved.</p>
     </footer>
-    <script>
-        const cart = document.querySelector('.cart');
-        const cartDropdown = document.querySelector('.cart-dropdown');
-        const cartCount = document.querySelector('.cart-count');
-        const cartItems = document.getElementById('cart-items');
-        const cartTotal = document.querySelector('.cart-total');
-
-        let cartData = [];
-
-        cart.addEventListener('click', () => {
-            cartDropdown.classList.toggle('active');
-        });
-
-        function addToCart(itemName, itemPrice) {
-            cartData.push({ name: itemName, price: itemPrice });
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            cartCount.textContent = cartData.length;
-
-            if (cartData.length === 0) {
-                cartItems.innerHTML = '<li>No items in the cart</li>';
-                cartTotal.textContent = 'Total: $0.00';
-                return;
-            }
-
-            cartItems.innerHTML = '';
-            let total = 0;
-
-            cartData.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
-                cartItems.appendChild(li);
-                total += item.price;
-            });
-
-            cartTotal.textContent = `Total: $${total.toFixed(2)}`;
-        }
-
-        // Example usage: Add items to the cart
-        // Uncomment these lines to test
-        // addToCart('Poster 1', 12.99);
-        // addToCart('Poster 2', 15.49);
-
-    </script>
 </body>
 </html>
