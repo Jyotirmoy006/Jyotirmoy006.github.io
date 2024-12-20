@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korea Genre - Vibe Crafters</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0c0c0c;
+            color: #f5faff;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            background: linear-gradient(90deg, #1a1a1a, #2a2a4f);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #87ceeb;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #f5faff;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #87ceeb;
+        }
+        .cart {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart .cart-icon {
+            font-size: 1.5em;
+            color: #87ceeb;
+        }
+
+        .cart-counter {
+            position: relative;
+            display: inline-block;
+        }
+
+        .cart-counter span {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ff4500;
+            color: #fff;
+            font-size: 0.8em;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://source.unsplash.com/1600x900/?sports') no-repeat center center/cover;
+            position: relative;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(12, 12, 12, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: #f5faff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+        }
+
+        .posters-section {
+            padding: 50px;
+            text-align: center;
+            background: #1a1a1a;
+            border-top: 5px solid #2a2a4f;
+        }
+
+        .posters-section h2 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #87ceeb;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .posters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .poster-card {
+            background: #1e1e3f;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .poster-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 1);
+        }
+
+        .poster-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .poster-card h3 {
+            padding: 10px;
+            color: #f5faff;
+        }
+
+        .poster-card .price {
+            color: #87ceeb;
+            font-size: 1.2em;
+        }
+
+        .poster-card .cart-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .poster-card button {
+            background: #87ceeb;
+            border: none;
+            color: #0c0c0c;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: background 0.3s;
+        }
+
+        .poster-card button:hover {
+            background: #5a9bd4;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #0c0c0c;
+            border-top: 5px solid #2a2a4f;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #f5faff;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Vibe Crafters</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Genres</a></li>
+                <li><a href="#">Reviews</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#cart" class="cart-counter">CART <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Korean Posters</h1>
+            <p>Discover the ultimate K-pop and K-drama posters to bring your favorite idols and moments to life!</p>
+        </div>
+    </div>
+
+    <section class="posters-section">
+        <h2>Featured Korean Posters</h2>
+        <div class="posters-grid" id="posters-grid">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Vibe Crafters. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const postersGrid = document.getElementById('posters-grid');
+const cartCount = document.getElementById('cart-count');
+
+let cartItems = 0;
+
+function addToCart() {
+    cartItems++;
+    cartCount.textContent = cartItems;
+}
+
+// Array of posters with specific image URLs and titles
+const posters = [
+    { url: 'https://preview.redd.it/ravzv5cy0vt31.jpg?auto=webp&s=04ccd43197ed3b63a10d838231ae1e00d9e811bd', title: 'Kpop' },
+    { url: 'https://m.media-amazon.com/images/I/71PuRfJ35RL.jpg', title: 'Bts' },
+    { url: 'https://i.ebayimg.com/00/s/MTExNlgxNjAw/z/e-MAAOSwWSZkiaN6/$_57.JPG?set_id=8800005007', title: 'Seventeen' },
+    { url: 'https://i.ebayimg.com/images/g/dpYAAOSwn8hiqB6J/s-l1200.jpg', title: 'Blackpink' },
+    { url: 'data:image/jpeg;base64,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', title: 'Kim Soo Hyun' },
+    { url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS8ABr4qFku0g0r1rK2sCBtR3p43GahHGnMw&s', title: 'Park Seo Joon' },
+    // Add up to 50 entries...
+];
+// Dynamically add posters to the grid
+posters.forEach((poster, index) => {
+    const posterCard = document.createElement('div');
+    posterCard.className = 'poster-card';
+
+    posterCard.innerHTML = `
+        <img src="${poster.url}" alt="${poster.title}">
+        <h3>${poster.title}</h3>
+        <p class="price">₹50</p>
+        <div class="cart-controls">
+            <button onclick="addToCart()">+</button>
+        </div>
+    `;
+
+    postersGrid.appendChild(posterCard);
+});
+
+    </script>
+</body>
