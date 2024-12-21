@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Genre - Vibe Crafters</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0c0c0c;
+            color: #f5faff;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            background: linear-gradient(90deg, #1a1a1a, #2a2a4f);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #87ceeb;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #f5faff;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #87ceeb;
+        }
+        .cart {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart .cart-icon {
+            font-size: 1.5em;
+            color: #87ceeb;
+        }
+
+        .cart-counter {
+            position: relative;
+            display: inline-block;
+        }
+
+        .cart-counter span {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ff4500;
+            color: #fff;
+            font-size: 0.8em;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://source.unsplash.com/1600x900/?sports') no-repeat center center/cover;
+            position: relative;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(12, 12, 12, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: #f5faff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+        }
+
+        .posters-section {
+            padding: 50px;
+            text-align: center;
+            background: #1a1a1a;
+            border-top: 5px solid #2a2a4f;
+        }
+
+        .posters-section h2 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #87ceeb;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .posters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .poster-card {
+            background: #1e1e3f;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .poster-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 1);
+        }
+
+        .poster-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+
+        .poster-card h3 {
+            padding: 10px;
+            color: #f5faff;
+        }
+
+        .poster-card .price {
+            color: #87ceeb;
+            font-size: 1.2em;
+        }
+
+        .poster-card .cart-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .poster-card button {
+            background: #87ceeb;
+            border: none;
+            color: #0c0c0c;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: background 0.3s;
+        }
+
+        .poster-card button:hover {
+            background: #5a9bd4;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #0c0c0c;
+            border-top: 5px solid #2a2a4f;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #f5faff;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Vibe Crafters</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Genres</a></li>
+                <li><a href="#">Reviews</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#cart" class="cart-counter">CART <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Movie Posters</h1>
+            <p>Discover the Beauty and creativity with every design</p>
+        </div>
+    </div>
+
+    <section class="posters-section">
+        <h2>Featured Movies Posters</h2>
+        <div class="posters-grid" id="posters-grid">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Vibe Crafters. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const postersGrid = document.getElementById('posters-grid');
+const cartCount = document.getElementById('cart-count');
+
+let cartItems = 0;
+
+function addToCart() {
+    cartItems++;
+    cartCount.textContent = cartItems;
+}
+
+// Array of posters with specific image URLs and titles
+const posters = [
+{ url: 'https://i.pinimg.com/originals/87/e3/01/87e3016f1b88994343c6f305aa0eaf3c.png', title: 'Titanic' },
+{ url: 'https://i.pinimg.com/originals/de/62/48/de6248c5af693cc6d674555662577ef8.jpg', title: 'Wolf of wall street' },
+{ url: 'https://i.pinimg.com/originals/91/e1/88/91e188d6d4ebf137dcb119be19093f06.jpg', title: 'Interstellar' },
+{ url: 'https://m.media-amazon.com/images/M/MV5BMTM4OTIxMDIyOV5BMl5BanBnXkFtZTcwNTk2MzkwMw@@.V1.jpg', title: '3 Idiots' },
+{ url: 'https://th.bing.com/th/id/OIP.KBdiBpfXcEd4TGxGGOCsKwHaKt?rs=1&pid=ImgDetMain', title: 'Tamasha' },
+{ url: 'https://i.pinimg.com/originals/85/31/40/8531402d32ed196a0db75e3f89bf46c1.jpg', title: 'Black Hole' },
+{ url: 'https://th.bing.com/th/id/OIP.ezWPhAF6jyVCDb7ruUK3MgAAAA?rs=1&pid=ImgDetMain', title: 'Tumbaad' },
+{ url: 'https://i.pinimg.com/originals/69/7f/f5/697ff5d53117acd1dcaa71ed54fcf258.jpg', title: 'Fast and Furious' },
+{ url: 'https://i.pinimg.com/736x/30/f1/61/30f161757fde35cd7d2186c968b9c2f3.jpg', title: 'Transformers' },
+{ url: 'https://i.pinimg.com/originals/e8/bf/d9/e8bfd951b999dd7cfa3197863288771c.jpg', title: 'Bruce Lee' },
+{ url: 'https://th.bing.com/th/id/OIP.1Zy2BiUbKyT65kZ7zASIHQAAAA?rs=1&pid=ImgDetMain', title: 'Jacky Chan' },
+{ url: 'https://m.media-amazon.com/images/I/71CnRvSTzBL.AC_SL1500.jpg', title: 'The Conjuring' },
+{ url: 'https://i.pinimg.com/originals/10/df/fc/10dffc696002710dd9cdd039ab636019.jpg', title: 'James Bond' },
+{ url: 'https://rukminim1.flixcart.com/image/416/416/jdxeykw0/poster/3/k/7/medium-sherlock-holmes-poster-sherlock-holmes-tv-show-posters-original-imaf2qf3qfysbshc.jpeg?q=70', title: 'Sherlock holmes' },
+{ url: 'https://www.cinemaclock.com/images/posters/1000x1500/72/the-karate-kid-2010-poster.jpg', title: 'The kerate Kid' },
+{ url: 'https://th.bing.com/th/id/OIP.VNvx3-1jQKK7jRlIAWR-tQAAAA?w=474&h=701&rs=1&pid=ImgDetMain', title: 'The Nun' },
+{ url: 'https://image.tmdb.org/t/p/original/fdD3whXbdfHjlcDNt2oEy6jsxjD.jpg', title: 'Bruce Lee' },
+{ url: 'https://i.pinimg.com/736x/0d/bd/fb/0dbdfbf71db511dc973028f3307400dc.jpg', title: 'Holmes' },
+{ url: 'https://i.pinimg.com/736x/32/06/48/3206483cb2140354199a3e5e59937c36.jpg', title: 'Transformers' },
+{ url: 'https://filmfare.wwmindia.com/content/2020/apr/jackie-chan-film-21586359834.jpg', title: 'The Drunkened Master' },
+{ url: 'https://loonaz.com/uploads/wallpaper/owr50.webp', title: '007' },
+    // Add up to 50 entries...
+];
+
+// Dynamically add posters to the grid
+posters.forEach((poster, index) => {
+    const posterCard = document.createElement('div');
+    posterCard.className = 'poster-card';
+
+    posterCard.innerHTML = `
+        <img src="${poster.url}" alt="${poster.title}">
+        <h3>${poster.title}</h3>
+        <p class="price">₹50</p>
+        <div class="cart-controls">
+            <button onclick="addToCart()">+</button>
+        </div>
+    `;
+
+    postersGrid.appendChild(posterCard);
+});
+
+    </script>
+</body>
+</html>
