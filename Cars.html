@@ -55,31 +55,7 @@
         header nav ul li a:hover {
             color: #87ceeb;
         }
-        .cart {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .cart .cart-icon {
-            font-size: 1.5em;
-            color: #87ceeb;
-        }
-
-        .cart-counter {
-            position: relative;
-            display: inline-block;
-        }
-
-        .cart-counter span {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: #ff4500;
-            color: #fff;
-            font-size: 0.8em;
-            padding: 2px 6px;
-            border-radius: 50%;
-        }
+        
 
         .hero {
             height: 60vh;
@@ -216,7 +192,7 @@
                 <li><a href="#">Genres</a></li>
                 <li><a href="#">Reviews</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="#cart" class="cart-counter">CART <span id="cart-count">0</span></a></li>
+                <li><a href="Order.html">Order</a></li>
             </ul>
         </nav>
     </header>
@@ -270,9 +246,7 @@ posters.forEach((poster, index) => {
         <img src="${poster.url}" alt="${poster.title}">
         <h3>${poster.title}</h3>
         <p class="price">₹50</p>
-        <div class="cart-controls">
-            <button onclick="addToCart()">+</button>
-        </div>
+        
     `;
 
     postersGrid.appendChild(posterCard);
