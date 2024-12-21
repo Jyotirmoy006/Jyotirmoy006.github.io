@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Genre - Vibe Crafters</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0c0c0c;
+            color: #f5faff;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            background: linear-gradient(90deg, #1a1a1a, #2a2a4f);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #87ceeb;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #f5faff;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #87ceeb;
+        }
+        .cart {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart .cart-icon {
+            font-size: 1.5em;
+            color: #87ceeb;
+        }
+
+        .cart-counter {
+            position: relative;
+            display: inline-block;
+        }
+
+        .cart-counter span {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ff4500;
+            color: #fff;
+            font-size: 0.8em;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://source.unsplash.com/1600x900/?sports') no-repeat center center/cover;
+            position: relative;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(12, 12, 12, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: #f5faff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+        }
+
+        .posters-section {
+            padding: 50px;
+            text-align: center;
+            background: #1a1a1a;
+            border-top: 5px solid #2a2a4f;
+        }
+
+        .posters-section h2 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #87ceeb;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .posters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .poster-card {
+            background: #1e1e3f;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .poster-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 1);
+        }
+
+        .poster-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+
+        .poster-card h3 {
+            padding: 10px;
+            color: #f5faff;
+        }
+
+        .poster-card .price {
+            color: #87ceeb;
+            font-size: 1.2em;
+        }
+
+        .poster-card .cart-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .poster-card button {
+            background: #87ceeb;
+            border: none;
+            color: #0c0c0c;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: background 0.3s;
+        }
+
+        .poster-card button:hover {
+            background: #5a9bd4;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #0c0c0c;
+            border-top: 5px solid #2a2a4f;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #f5faff;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Vibe Crafters</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Genres</a></li>
+                <li><a href="#">Reviews</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#cart" class="cart-counter">CART <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Motivational Posters</h1>
+            <p>Gives you the motivation through every design.</p>
+        </div>
+    </div>
+
+    <section class="posters-section">
+        <h2>Feature motivational Posters</h2>
+        <div class="posters-grid" id="posters-grid">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Vibe Crafters. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const postersGrid = document.getElementById('posters-grid');
+const cartCount = document.getElementById('cart-count');
+
+let cartItems = 0;
+
+function addToCart() {
+    cartItems++;
+    cartCount.textContent = cartItems;
+}
+
+// Array of posters with specific image URLs and titles
+const posters = [
+    { url: 'https://th.bing.com/th/id/OIP.8bdpv2Wu755pwP4RWVszhwHaO0?rs=1&pid=ImgDetMain', title: 'Mountains' },
+    { url: 'https://th.bing.com/th/id/OIP.xJF-BSoz5BNQr7hq46nZ8AHaNS?rs=1&pid=ImgDetMain', title: 'Flowers' },
+    { url: 'https://i.pinimg.com/736x/18/fe/6a/18fe6ac9e4f440c5a7c8c61631de2253.jpg', title: 'Rocks' },
+    { url: 'https://th.bing.com/th/id/OIP.Am5Ld0skkJ445tbzHsMprQHaNK?rs=1&pid=ImgDetMain', title: 'Wheat' },
+    { url: 'https://i.pinimg.com/originals/2f/ff/08/2fff084bbf356875402ca2d56a44041d.jpg', title: 'Bridge' },
+    { url: 'https://i.pinimg.com/originals/9e/7e/1b/9e7e1bbd8e8b7792f3d7e63ceeb85127.jpg', title: 'Sea' },
+    { url: 'https://i.pinimg.com/736x/ba/f2/0a/baf20a347f38b693ef26416d0c25745e.jpg', title: 'Flowers' },
+    { url: 'https://i.pinimg.com/originals/c6/b2/62/c6b2628343cabe78a22e477d42e4d0d6.jpg', title: 'Waterfall' },
+    { url: 'https://i.pinimg.com/736x/6d/90/04/6d9004059f0ec581503df5edd12b4400.jpg', title: 'Sunlight' },
+    { url: 'https://img.freepik.com/premium-photo/green-forest-beautiful-trees_863013-88523.jpg', title: 'Woods' },
+    { url: 'https://i.pinimg.com/originals/44/08/4e/44084e3467a85f2048c93e75abd59b0d.jpg', title: 'Pathway' },
+    { url: 'https://wallpaperaccess.com/full/4170940.jpg', title: 'Branches' },
+    { url: 'https://i.pinimg.com/736x/b8/24/a6/b824a69a19ac69a3f25231ed476fe8ec--mel-purple-rain.jpg', title: 'Mystical Forest' },
+    { url: 'https://wallpapercave.com/wp/wp6321215.jpg', title: 'Leaves' },
+    { url: 'https://images.pexels.com/photos/17526661/pexels-photo-17526661/free-photo-of-orang-flower.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', title: 'Flower' },
+    { url: 'https://cdn.pixabay.com/photo/2021/05/19/17/06/flowers-6266666_960_720.jpg', title: 'White Fllowers' },
+    { url: 'https://r1.ilikewallpaper.net/iphone-wallpapers/download/98270/Plitvice-Lakes-National-Park-The-Most-Beautiful-fe-iphone-wallpaper-ilikewallpaper_com.jpg', title: 'Waterfall' },
+    { url: 'https://i.pinimg.com/originals/46/62/cc/4662ccd7fdc33612f97e53f0076ad816.jpg', title: 'Droplets' },
+
+    // Add up to 50 entries...
+];
+
+// Dynamically add posters to the grid
+posters.forEach((poster, index) => {
+    const posterCard = document.createElement('div');
+    posterCard.className = 'poster-card';
+
+    posterCard.innerHTML = `
+        <img src="${poster.url}" alt="${poster.title}">
+        <h3>${poster.title}</h3>
+        <p class="price">₹50</p>
+        <div class="cart-controls">
+            <button onclick="addToCart()">+</button>
+        </div>
+    `;
+
+    postersGrid.appendChild(posterCard);
+});
+
+    </script>
+</body>
+</html>
