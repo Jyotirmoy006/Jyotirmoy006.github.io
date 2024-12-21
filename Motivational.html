@@ -206,7 +206,7 @@
     </div>
 
     <section class="posters-section">
-        <h2>Feature motivational Posters</h2>
+        <h2>Featured Motivational Posters</h2>
         <div class="posters-grid" id="posters-grid">
         </div>
     </section>
@@ -259,9 +259,7 @@ posters.forEach((poster, index) => {
         <img src="${poster.url}" alt="${poster.title}">
         <h3>${poster.title}</h3>
         <p class="price">₹50</p>
-        <div class="cart-controls">
-            <button onclick="addToCart()">+</button>
-        </div>
+        
     `;
 
     postersGrid.appendChild(posterCard);
