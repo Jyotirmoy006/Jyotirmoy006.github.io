@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - Vibe Crafters</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Global Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #222; /* Matches the dark background theme */
+            color: white;
+        }
+
+        /* Header Section */
+        header {
+            background: black; /* Consistent with home page top bar */
+            color: cornflowerblue;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: cornflowerblue;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        header nav ul li a:hover {
+            color: cornflowerblue;
+        }
+
+        /* Main Content */
+        .order-container {
+            max-width: 800px;
+            margin: 120px auto 0;
+            background: #444;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .order-container h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .order-container p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        .email {
+            color: cornflowerblue;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .email:hover {
+            text-decoration: underline;
+        }
+
+        ul.instructions {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        ul.instructions li {
+            color: #ccc;
+            margin-bottom: 8px;
+        }
+
+        .back-button {
+            text-decoration: none;
+            color: cornflowerblue;
+            font-size: 16px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">Vibe Crafters</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="order.html" style="color: cornflowerblue;">Order</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="order-container">
+        <h2>Place Your Order</h2>
+        <p>We are excited to craft the perfect vibe for you! Please follow the instructions below to place your order via email:</p>
+        <ul class="instructions">
+            <li>1. Provide your full name.</li>
+            <li>2. Share your contact number for confirmation.</li>
+            <li>3. Mention the <strong>Serial Number</strong> and <strong>Item ID</strong> of the product(s) you want to purchase.</li>
+            <li>4. Specify the quantity for each item.</li>
+        </ul>
+        <p>Send the above details to our email address:</p>
+        <p><a href="mailto:vibecrafters2025@gmail.com" class="email">vibecrafters2025@gmail.com</a></p>
+        <p>Once we receive your email, our team will contact you for confirmation and further details.</p>
+        <a href="index.html" class="back-button">Back to Home</a>
+    </div>
+</body>
+</html>
