@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports Genre - Vibe Crafters</title>
+    <title>Movies Genre - Vibe Crafters</title>
     <style>
         /* General Reset */
         * {
@@ -99,7 +99,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(12, 12, 12, 0.6);
+            background: transparent;
         }
 
         .hero-content {
@@ -212,12 +212,12 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Genres</a></li>
-                <li><a href="#">Reviews</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#cart" class="cart-counter">CART <span id="cart-count">0</span></a></li>
+                <li><a href="index.html#shop">Shop</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#genres">Genres</a></li>
+                <li><a href="index.html#reviews">Reviews</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="Order.html">Order</a></li>
             </ul>
         </nav>
     </header>
@@ -225,7 +225,7 @@
     <div class="hero">
         <div class="hero-content">
             <h1>Movie Posters</h1>
-            <p>Discover the Beauty and creativity with every design</p>
+            <p>Experience the magic of movies through beautifully crafted posters.</p>
         </div>
     </div>
 
@@ -267,7 +267,6 @@ const posters = [
 { url: 'https://i.pinimg.com/originals/10/df/fc/10dffc696002710dd9cdd039ab636019.jpg', title: 'James Bond' },
 { url: 'https://rukminim1.flixcart.com/image/416/416/jdxeykw0/poster/3/k/7/medium-sherlock-holmes-poster-sherlock-holmes-tv-show-posters-original-imaf2qf3qfysbshc.jpeg?q=70', title: 'Sherlock holmes' },
 { url: 'https://www.cinemaclock.com/images/posters/1000x1500/72/the-karate-kid-2010-poster.jpg', title: 'The kerate Kid' },
-{ url: 'https://th.bing.com/th/id/OIP.VNvx3-1jQKK7jRlIAWR-tQAAAA?w=474&h=701&rs=1&pid=ImgDetMain', title: 'The Nun' },
 { url: 'https://image.tmdb.org/t/p/original/fdD3whXbdfHjlcDNt2oEy6jsxjD.jpg', title: 'Bruce Lee' },
 { url: 'https://i.pinimg.com/736x/0d/bd/fb/0dbdfbf71db511dc973028f3307400dc.jpg', title: 'Holmes' },
 { url: 'https://i.pinimg.com/736x/32/06/48/3206483cb2140354199a3e5e59937c36.jpg', title: 'Transformers' },
@@ -285,9 +284,7 @@ posters.forEach((poster, index) => {
         <img src="${poster.url}" alt="${poster.title}">
         <h3>${poster.title}</h3>
         <p class="price">₹50</p>
-        <div class="cart-controls">
-            <button onclick="addToCart()">+</button>
-        </div>
+        
     `;
 
     postersGrid.appendChild(posterCard);
