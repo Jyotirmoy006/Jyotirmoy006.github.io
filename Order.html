@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order - Vibe Crafters</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         /* Global Styling */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #222; /* Matches the dark background theme */
+            background: linear-gradient(135deg, black, cornflowerblue);
             color: white;
+            background-attachment: fixed;
         }
 
         /* Header Section */
         header {
-            background: black; /* Consistent with home page top bar */
-            color: cornflowerblue;
+            background: linear-gradient(90deg, black, cornflowerblue);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -36,29 +36,78 @@
             color: cornflowerblue;
         }
 
-        header nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            gap: 15px;
+        /* Navigation Menu */
+        nav {
+            position: relative;
         }
 
-        header nav ul li a {
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
             color: white;
             text-decoration: none;
             font-size: 16px;
         }
 
-        header nav ul li a:hover {
+        nav ul li a:hover,
+        nav ul li a.active {
             color: cornflowerblue;
+        }
+
+        /* Hamburger Menu for Smaller Screens */
+        .menu-icon {
+            display: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+
+        #menu-toggle {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                background: black;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+                display: none;
+                padding: 10px 0;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            }
+
+            nav ul li {
+                text-align: center;
+                margin: 10px 0;
+            }
+
+            #menu-toggle:checked + .menu-icon + ul {
+                display: flex;
+            }
+
+            .menu-icon {
+                display: block;
+            }
         }
 
         /* Main Content */
         .order-container {
             max-width: 800px;
             margin: 120px auto 0;
-            background: #444;
+            background: rgba(34, 34, 34, 0.9);
             padding: 20px 30px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -75,16 +124,6 @@
             color: #ccc;
         }
 
-        .email {
-            color: cornflowerblue;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .email:hover {
-            text-decoration: underline;
-        }
-
         ul.instructions {
             margin-left: 20px;
             margin-bottom: 20px;
@@ -93,6 +132,16 @@
         ul.instructions li {
             color: #ccc;
             margin-bottom: 8px;
+        }
+
+        .email {
+            color: cornflowerblue;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .email:hover {
+            text-decoration: underline;
         }
 
         .back-button {
@@ -106,6 +155,19 @@
         .back-button:hover {
             text-decoration: underline;
         }
+
+        /* Pattern Overlay */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('pattern.png'); /* Replace with your pattern image */
+            opacity: 0.1;
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
@@ -113,12 +175,16 @@
     <header>
         <div class="logo">Vibe Crafters</div>
         <nav>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="about.html">About</a></li>
+                <li><a href="genres.html">Genres</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="order.html" style="color: cornflowerblue;">Order</a></li>
+                <li><a href="order.html">Order</a></li>
             </ul>
         </nav>
     </header>
