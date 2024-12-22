@@ -5,36 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order - Vibe Crafters</title>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-     <script type="text/javascript">
-        (function() {
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
             emailjs.init("9W_aF_F66kSfxHxAk"); // Replace with your actual User ID
-        })();
 
-        // Form submission handler
-        document.getElementById("contact-form").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevents default form submission
+            // Form submission handler
+            document.getElementById("contact-form").addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevents default form submission
 
-            // Get form data
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const message = document.getElementById("message").value;
+                // Get form data
+                const name = document.getElementById("name").value;
+                const email = document.getElementById("email").value;
+                const message = document.getElementById("message").value;
 
-            // Send the email using EmailJS
-            emailjs.send("service_m7o4dxq", "template_yx50wx2", {
-                name: name,
-                email: email,
-                message: message
-            })
-            .then(function(response) {
-                alert("Message sent successfully!", response);
-            }, function(error) {
-                alert("Failed to send message. Try again later.", error);
+                // Show loading message
+                const feedback = document.getElementById("feedback");
+                feedback.style.color = "white";
+                feedback.textContent = "Sending your message...";
+
+                // Send the email using EmailJS
+                emailjs.send("service_m7o4dxq", "template_yx50wx2", {
+                    name: name,
+                    email: email,
+                    message: message
+                })
+                .then(function(response) {
+                    feedback.style.color = "lightgreen";
+                    feedback.textContent = "Message sent successfully!";
+                    document.getElementById("contact-form").reset();
+                }, function(error) {
+                    feedback.style.color = "red";
+                    feedback.textContent = "Failed to send message. Please try again later.";
+                });
             });
         });
     </script>
-
-
-
 
     <style>
         /* Global Styling */
@@ -97,7 +102,7 @@
             padding: 0;
             margin: 0;
             display: flex;
-            gap: 30px; /* Adjusted for consistent spacing */
+            gap: 30px;
             flex-wrap: nowrap;
         }
 
@@ -205,13 +210,18 @@
         form button:hover {
             background: #1e90ff;
         }
+
+        .feedback {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <!-- Header Section -->
     <header>
         <div class="logo">Vibe Crafters</div>
-        
     </header>
 
     <!-- Main Content -->
@@ -231,12 +241,10 @@
 
             <button type="submit">Send Message</button>
         </form>
+        <p class="feedback" id="feedback"></p>
         <p>Email us at: <a href="mailto:vibecrafters2025@gmail.com" class="email">vibecrafters2025@gmail.com</a></p>
         <p>Call us at: <a href="tel:+1234567890" class="phone">+1 234 567 890</a></p>
         <p>You can also visit our store at: <br> 123 Vibe Street, Creativity City, Dreamland</p>
     </div>
-
-
-
 </body>
 </html>
