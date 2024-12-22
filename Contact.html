@@ -5,10 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order - Vibe Crafters</title>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script type="text/javascript">
-      (function(){
-        emailjs.init("9W_aF_F66kSfxHxAkok "); // Replace with your user ID
-      })();
+     <script type="text/javascript">
+        (function() {
+            emailjs.init("9W_aF_F66kSfxHxAk"); // Replace with your actual User ID
+        })();
+
+        // Form submission handler
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevents default form submission
+
+            // Get form data
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            // Send the email using EmailJS
+            emailjs.send("service_m7o4dxq", "template_yx50wx2", {
+                name: name,
+                email: email,
+                message: message
+            })
+            .then(function(response) {
+                alert("Message sent successfully!", response);
+            }, function(error) {
+                alert("Failed to send message. Try again later.", error);
+            });
+        });
     </script>
 
 
@@ -264,33 +286,7 @@
     </div>
 
     <!-- EmailJS Script -->
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("9W_aF_F66kSfxHxAk"); // Replace with your actual User ID
-        })();
-
-        // Form submission handler
-        document.getElementById("contact-form").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevents default form submission
-
-            // Get form data
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const message = document.getElementById("message").value;
-
-            // Send the email using EmailJS
-            emailjs.send("service_m7o4dxq", "template_yx50wx2", {
-                name: name,
-                email: email,
-                message: message
-            })
-            .then(function(response) {
-                alert("Message sent successfully!", response);
-            }, function(error) {
-                alert("Failed to send message. Try again later.", error);
-            });
-        });
-    </script>
+   
 </body>
 </html>
 
