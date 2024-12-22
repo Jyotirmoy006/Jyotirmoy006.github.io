@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order - Vibe Crafters</title>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function(){
+        emailjs.init("9W_aF_F66kSfxHxAkok "); // Replace with your user ID
+      })();
+    </script>
+
+
+
+
     <style>
         /* Global Styling */
         body {
@@ -203,5 +213,86 @@
         <p>Call us at: <a href="tel:+1234567890" class="phone">+1 234 567 890</a></p>
         <p>You can also visit our store at: <br> 123 Vibe Street, Creativity City, Dreamland</p>
     </div>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Vibe Crafters</title>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">Vibe Crafters</div>
+    </header>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Vibe Crafters</title>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">Vibe Crafters</div>
+    </header>
+
+    <div class="contact-container">
+        <a href="index.html" class="back-button">Back to Home</a>
+        <h2>Contact Us</h2>
+        <p>We’d love to hear from you! If you have any questions, concerns, or feedback, feel free to reach out to us through the following ways:</p>
+        
+        <!-- Contact Form -->
+        <form id="contact-form">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="message">Your Message:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+
+        <p>Email us at: <a href="mailto:vibecrafters2025@gmail.com" class="email">vibecrafters2025@gmail.com</a></p>
+        <p>Call us at: <a href="tel:+1234567890" class="phone">+1 234 567 890</a></p>
+        <p>You can also visit our store at: <br> 123 Vibe Street, Creativity City, Dreamland</p>
+    </div>
+
+    <!-- EmailJS Script -->
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("9W_aF_F66kSfxHxAk"); // Replace with your actual User ID
+        })();
+
+        // Form submission handler
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevents default form submission
+
+            // Get form data
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            // Send the email using EmailJS
+            emailjs.send("service_m7o4dxq", "template_yx50wx2", {
+                name: name,
+                email: email,
+                message: message
+            })
+            .then(function(response) {
+                alert("Message sent successfully!", response);
+            }, function(error) {
+                alert("Failed to send message. Try again later.", error);
+            });
+        });
+    </script>
+</body>
+</html>
+
 </body>
 </html>
