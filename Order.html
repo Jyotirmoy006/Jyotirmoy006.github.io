@@ -10,20 +10,43 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, black, cornflowerblue);
+            background: linear-gradient(135deg, #0f0f0f, #1e3c72);
             color: white;
             background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Diagonal Lines */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                transparent 45%,
+                rgba(135, 206, 250, 0.2) 45%,
+                rgba(135, 206, 250, 0.2) 50%,
+                transparent 50%,
+                transparent 95%,
+                rgba(135, 206, 250, 0.2) 95%
+            );
+            background-size: 100% 200%;
+            z-index: -1;
         }
 
         /* Header Section */
         header {
-            background: linear-gradient(90deg, black, cornflowerblue);
+            background: linear-gradient(90deg, #0f0f0f, #1e3c72);
             color: white;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            padding: 15px 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             position: fixed;
             top: 0;
             width: 100%;
@@ -31,142 +54,117 @@
         }
 
         header .logo {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
-            color: cornflowerblue;
+            color: #87cefa;
+            text-shadow: 0 4px 8px rgba(135, 206, 250, 0.7);
         }
 
-        /* Navigation Menu */
-        nav {
-            position: relative;
-        }
-
-        nav ul {
+        header nav ul {
             list-style: none;
-            display: flex;
-            gap: 15px;
-            margin: 0;
             padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 30px; /* Adjusted for consistent spacing */
+            flex-wrap: nowrap;
         }
 
-        nav ul li {
-            position: relative;
+        header nav ul li {
+            display: inline-block;
         }
 
-        nav ul li a {
+        header nav ul li a {
             color: white;
             text-decoration: none;
             font-size: 16px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            transition: color 0.3s, transform 0.3s;
         }
 
-        nav ul li a:hover,
-        nav ul li a.active {
-            color: cornflowerblue;
+        header nav ul li a:hover {
+            color: #87cefa;
+            transform: scale(1.1);
         }
 
-        /* Hamburger Menu for Smaller Screens */
-        .menu-icon {
-            display: none;
-            font-size: 24px;
-            color: white;
-            cursor: pointer;
-        }
-
-        #menu-toggle {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                background: black;
-                position: absolute;
-                top: 60px;
-                right: 0;
-                width: 100%;
-                display: none;
-                padding: 10px 0;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            }
-
-            nav ul li {
-                text-align: center;
-                margin: 10px 0;
-            }
-
-            #menu-toggle:checked + .menu-icon + ul {
-                display: flex;
-            }
-
-            .menu-icon {
-                display: block;
-            }
+        header nav ul li a.active {
+            color: #87cefa;
         }
 
         /* Main Content */
         .order-container {
             max-width: 800px;
-            margin: 120px auto 0;
+            margin: 140px auto 40px;
             background: rgba(34, 34, 34, 0.9);
-            padding: 20px 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transform: perspective(1000px) rotateX(0deg);
         }
 
         .order-container h2 {
-            color: white;
+            color: #ffffff;
             margin-bottom: 20px;
+            font-size: 32px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
         }
 
         .order-container p {
-            line-height: 1.6;
+            line-height: 1.8;
             margin-bottom: 20px;
-            color: #ccc;
-        }
-
-        ul.instructions {
-            margin-left: 20px;
-            margin-bottom: 20px;
-        }
-
-        ul.instructions li {
-            color: #ccc;
-            margin-bottom: 8px;
+            color: #cccccc;
+            font-size: 18px;
         }
 
         .email {
-            color: cornflowerblue;
+            color: #87cefa;
             font-weight: bold;
             text-decoration: none;
+            font-size: 18px;
+            text-shadow: 0 4px 8px rgba(135, 206, 250, 0.5);
         }
 
         .email:hover {
             text-decoration: underline;
+            color: #ffffff;
+        }
+
+        ul.instructions {
+            text-align: left;
+            margin: 20px auto;
+            padding: 0;
+            list-style: none;
+            max-width: 600px;
+        }
+
+        ul.instructions li {
+            color: #ccc;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        ul.instructions li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(135, 206, 250, 0.5);
         }
 
         .back-button {
             text-decoration: none;
-            color: cornflowerblue;
-            font-size: 16px;
+            color: #87cefa;
+            font-size: 18px;
             display: inline-block;
             margin-top: 20px;
+            text-shadow: 0 4px 8px rgba(135, 206, 250, 0.7);
+            transition: color 0.3s, transform 0.3s;
         }
 
         .back-button:hover {
-            text-decoration: underline;
-        }
-
-        /* Pattern Overlay */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('pattern.png'); /* Replace with your pattern image */
-            opacity: 0.1;
-            z-index: -1;
+            color: #ffffff;
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -175,17 +173,7 @@
     <header>
         <div class="logo">Vibe Crafters</div>
         <nav>
-            <input type="checkbox" id="menu-toggle">
-            <label for="menu-toggle" class="menu-icon">&#9776;</label>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="genres.html">Genres</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="order.html">Order</a></li>
-            </ul>
+            
         </nav>
     </header>
 
