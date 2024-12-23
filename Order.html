@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Place your order at Vibe Crafters. Follow simple steps to purchase your favorite vibe crafting items and we'll handle the rest!">
-
     <title>Order - Vibe Crafters</title>
     <style>
-        /* Global Styling */
+        /* Background Styling */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -19,7 +17,6 @@
             overflow-x: hidden;
         }
 
-        /* Diagonal Lines */
         body::before {
             content: '';
             position: absolute;
@@ -40,8 +37,8 @@
             z-index: -1;
         }
 
-        /* Header Section */
-        header {
+         /* Header Section */
+         header {
             background: linear-gradient(90deg, #0f0f0f, #1e3c72);
             color: white;
             display: flex;
@@ -92,66 +89,22 @@
             color: #87cefa;
         }
 
-        /* Main Content */
+        /* Order Section */
         .order-container {
             max-width: 800px;
-            margin: 140px auto 40px;
-            background: rgba(34, 34, 34, 0.9);
+            margin: 140px auto;
             padding: 30px;
+            background: rgba(34, 34, 34, 0.9);
             border-radius: 15px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            color: white;
+            position: relative;
             text-align: center;
-            transform: perspective(1000px) rotateX(0deg);
         }
 
-        .order-container h2 {
-            color: #ffffff;
-            margin-bottom: 20px;
-            font-size: 32px;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
-        }
-
-        .order-container p {
-            line-height: 1.8;
-            margin-bottom: 20px;
-            color: #cccccc;
-            font-size: 18px;
-        }
-
-        .email {
+        .order-container h2, .order-container h3 {
             color: #87cefa;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 18px;
-            text-shadow: 0 4px 8px rgba(135, 206, 250, 0.5);
-        }
-
-        .email:hover {
-            text-decoration: underline;
-            color: #ffffff;
-        }
-
-        ul.instructions {
-            text-align: left;
-            margin: 20px auto;
-            padding: 0;
-            list-style: none;
-            max-width: 600px;
-        }
-
-        ul.instructions li {
-            color: #ccc;
-            margin-bottom: 15px;
-            padding: 10px 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        ul.instructions li:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(135, 206, 250, 0.5);
+            text-shadow: 0 4px 8px rgba(135, 206, 250, 0.7);
         }
 
         .back-button {
@@ -173,31 +126,163 @@
             color: white;
             transform: scale(1.05);
         }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        input, button, table {
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%; /* Take up the full width of the cell */
+            padding: 5px;
+            box-sizing: border-box; /* Include padding and borders in width */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #87cefa;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #1e3c72;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            table-layout: fixed; /* Prevent cells from stretching unevenly */
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            overflow: hidden; /* Prevent content overflow */
+            white-space: nowrap; /* Prevent text from wrapping */
+        }
+
+    
     </style>
 </head>
 <body>
     <!-- Header Section -->
     <header>
         <div class="logo">Vibe Crafters</div>
-        <nav>
-            
-        </nav>
     </header>
 
-    <!-- Main Content -->
+    <!-- Order Section -->
     <div class="order-container">
         <a href="index.html" class="back-button">Back to Home</a>
         <h2>Place Your Order</h2>
-        <p>We are excited to craft the perfect vibe for you! Please follow the instructions below to place your order via email:</p>
-        <ul class="instructions">
-            <li>1. Provide your full name.</li>
-            <li>2. Share your contact number for confirmation.</li>
-            <li>3. Mention the <strong>Serial Number</strong> and <strong>Item ID</strong> of the product(s) you want to purchase.</li>
-            <li>4. Specify the quantity for each item.</li>
-        </ul>
-        <p>Send the above details to our email address:</p>
-        <p><a href="mailto:vibecrafters2025@gmail.com" class="email">vibecrafters2025@gmail.com</a></p>
-        <p>Once we receive your email, our team will contact you for confirmation and further details.</p>
-       
+        <form id="orderForm" action="/submit-order" method="POST" enctype="multipart/form-data">
+            <!-- Basic Information -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your full name"><br><br>
+
+            <label for="number">Contact Number:</label>
+            <input type="tel" id="number" name="number" required placeholder="Enter your contact number" pattern="[0-9]{10}" title="Enter a valid 10-digit phone number"><br><br>
+
+            <label for="email">Email ID:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email ID"><br><br>
+
+            <!-- Table for Items -->
+            <h3>Order Details</h3>
+            <table id="orderTable">
+                <thead>
+                    <tr>
+                        <th>Serial No.</th>
+                        <th>Poster ID</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="number" name="serial_no[]" required></td>
+                        <td><input type="text" name="poster_id[]" required></td>
+                        <td><input type="number" name="quantity[]" min="1" required></td>
+                        <td><button type="button" onclick="removeRow(this)">Remove</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" onclick="addRow()">Add Item</button><br><br>
+
+            <!-- Image Upload -->
+            <label for="images">Upload Images (optional):</label>
+            <input type="file" id="images" name="images[]" multiple accept="image/*"><br><br>
+
+            <!-- Submit Button -->
+            <button type="submit">Submit Order</button>
+        </form>
+    </div>
+
+    <script>
+        function addRow() {
+            const table = document.getElementById("orderTable").querySelector("tbody");
+            const newRow = `
+                <tr>
+                    <td><input type="number" name="serial_no[]" required></td>
+                    <td><input type="text" name="poster_id[]" required></td>
+                    <td><input type="number" name="quantity[]" min="1" required></td>
+                    <td><button type="button" onclick="removeRow(this)">Remove</button></td>
+                </tr>`;
+            table.insertAdjacentHTML('beforeend', newRow);
+        }
+
+        function removeRow(button) {
+            button.closest('tr').remove();
+        }
+        function addRow() {
+        const table = document.getElementById("orderTable").querySelector("tbody");
+
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
+            <td></td> <!-- Serial No. will auto-update -->
+            <td><input type="text" name="poster_id[]" required></td>
+            <td><input type="number" name="quantity[]" min="1" required></td>
+            <td><button type="button" onclick="removeRow(this)">Remove</button></td>
+        `;
+        table.appendChild(newRow);
+        updateSerialNumbers(); // Update Serial Numbers after adding a row
+    }
+
+    function removeRow(button) {
+        button.closest('tr').remove();
+        updateSerialNumbers(); // Update Serial Numbers after removing a row
+    }
+
+    function updateSerialNumbers() {
+        const rows = document.getElementById("orderTable").querySelectorAll("tbody tr");
+        rows.forEach((row, index) => {
+            row.cells[0].textContent = index + 1; // Auto-generate Serial No.
+        });
+    }
+
+    // Initialize with one row
+    document.addEventListener("DOMContentLoaded", () => {
+        updateSerialNumbers();
+    });
+    </script>
 </body>
 </html>
