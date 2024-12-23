@@ -314,45 +314,6 @@
         });
     </script>
     <script>
-        document.getElementById('images').addEventListener('change', function(event) {
-            const files = event.target.files;
-            
-            // Check if files are selected
-            if (files.length > 0) {
-                const formData = new FormData();
-                formData.append('image', files[0]);
-
-                // Make API call to ImageBB
-                fetch('https://api.imgbb.com/1/upload?key=83a9d0130fd4c7a4f8da691a6aa641db', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        const imageUrl = data.data.url; // Get the uploaded image URL
-                        console.log('Image uploaded successfully:', imageUrl);
-
-                        // Optionally, you can display the image as a preview
-                        const imgElement = document.createElement('img');
-                        imgElement.src = imageUrl;
-                        imgElement.alt = 'Uploaded Image Preview';
-                        imgElement.style.width = '100px';  // Adjust size as needed
-                        imgElement.style.height = 'auto';
-                        document.getElementById('image-preview').appendChild(imgElement);
-
-                        // Optionally, store the image URL for use in form submission
-                    } else {
-                        console.error('Image upload failed:', data.error.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error during image upload:', error);
-                });
-            }
-        });
-    </script>
-    <script>
         function addRow() {
             const table = document.getElementById("orderTable").querySelector("tbody");
             const newRow = document.createElement("tr");
@@ -421,7 +382,7 @@
 
         // Initialize EmailJS
         (function() {
-            emailjs.init("9W_aF_F66kSfxHxAk"); // Replace with your EmailJS user ID
+            emailjs.init("4CmXxrchjVl8wmbfK"); // Replace with your EmailJS user ID
         })();
     
         // Function to upload image to ImageBB (or any image hosting service)
@@ -486,7 +447,7 @@
             }
     
             // Send email using EmailJS
-            emailjs.send('service_m7o4dxq', 'template_df77hui', emailData)
+            emailjs.send('service_axgh086', 'template_dp25nd9', emailData)
                 .then((response) => {
                     console.log('Success:', response);
                     alert('Order sent successfully!');
