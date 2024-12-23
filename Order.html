@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+
+
     <title>Order - Vibe Crafters</title>
     <style>
         /* Background Styling */
@@ -229,8 +233,18 @@
             <button type="button" onclick="addRow()">Add Item</button><br><br>
 
             <!-- Image Upload -->
-            <label for="images">Upload Images (optional):</label>
-            <input type="file" id="images" name="images[]" multiple accept="image/*"><br><br>
+            <!-- Image Upload Section -->
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div style="flex: 1;">
+                    <label for="images">Upload Images (optional):</label>
+                    <input type="file" id="images" name="images[]" multiple accept="image/*"><br><br>
+                </div>
+            
+                <div style="flex: 1; margin-left: 20px;">
+                    <label for="message">Message (optional):</label>
+                    <textarea id="message" name="message" placeholder="Enter your message (optional)" rows="5" style="width: 100%; padding: 5px; border-radius: 5px; background: rgba(255, 255, 255, 0.1); color: white;"></textarea><br><br>
+                </div>
+            </div>
 
             <!-- Submit Button -->
             <button type="submit">Submit Order</button>
@@ -283,6 +297,86 @@
     document.addEventListener("DOMContentLoaded", () => {
         updateSerialNumbers();
     });
+    </script>
+    <script type="text/javascript">
+        // Initialize EmailJS
+    (function() {
+        emailjs.init("9W_aF_F66kSfxHxAk"); // Replace with your EmailJS user ID
+    })();
+    
+    // Function to upload image to ImageBB (or any image hosting service)
+    async function uploadImageToImageBB(file) {
+        const formData = new FormData();
+        formData.append("image", file);
+    
+        try {
+            const response = await fetch("https://api.imgbb.com/1/upload?key=YOUR_API_KEY", { // Replace with your ImageBB API key
+                method: "POST",
+                body: formData
+            });
+            const data = await response.json();
+            if (data.success) {
+                return data.data.url; // Return the image URL
+            } else {
+                throw new Error("Image upload failed");
+            }
+        } catch (error) {
+            console.error("Error uploading image:", error);
+            return null;
+        }
+    }
+    
+    // Function to send the form data via EmailJS
+    async function sendEmail(event) {
+        event.preventDefault(); // Prevent default form submission
+    
+        const form = document.getElementById("orderForm");
+        const formData = new FormData(form); // Collect form data
+    
+        // Prepare the email data
+        const emailData = {
+            name: formData.get('name'),
+            number: formData.get('number'),
+            email: formData.get('email'),
+            message: formData.get('message'),
+            orderDetails: [], // Will hold the order details (serial no., poster id, quantity)
+            images: [] // Will hold the image URLs
+        };
+    
+        // Collect order details from the table
+        const serialNumbers = formData.getAll('serial_no[]');
+        const posterIds = formData.getAll('poster_id[]');
+        const quantities = formData.getAll('quantity[]');
+    
+        for (let i = 0; i < serialNumbers.length; i++) {
+            emailData.orderDetails.push({
+                serial_no: serialNumbers[i],
+                poster_id: posterIds[i],
+                quantity: quantities[i]
+            });
+        }
+    
+        // Handle image uploads
+        const imageFiles = formData.getAll('images[]');
+        for (let file of imageFiles) {
+            const imageUrl = await uploadImageToImageBB(file); // Upload the image
+            if (imageUrl) {
+                emailData.images.push(imageUrl); // Add the image URL to emailData
+            }
+        }
+    
+        // Send email using EmailJS
+        emailjs.sendForm('service_m7o4dxq', 'template_df77hui', formData)
+            .then((response) => {
+                console.log('Success:', response);
+                alert('Order sent successfully!');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Failed to send order. Please try again.');
+            });
+    }
+
     </script>
 </body>
 </html>
