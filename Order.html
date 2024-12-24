@@ -258,7 +258,7 @@
             message: formData.get('message') || '', // Ensure message is defined
             orderDetails: [] // Will hold the order details (serial no., poster id, quantity)
         };
-         console.log("Email Data:", emailData);
+         
     
         // Collect order details from the table
         const serialNumbers = formData.getAll('serial_no[]');
@@ -272,6 +272,7 @@
                 quantity: quantities[i]
             });
         }
+        console.log("Email Data:", emailData);
     
         // Send the data via EmailJS
         emailjs.send("service_axgh086", "template_dp25nd9", emailData)
