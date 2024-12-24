@@ -227,12 +227,11 @@
         }
 
         function updateSerialNumbers() {
-            const rows = document.getElementById("orderTable").querySelectorAll("tbody tr");
-            rows.forEach((row, index) => {
-                row.cells[0].textContent = index + 1; // Auto-generate Serial No.
-            });
+          const rows = document.getElementById("orderTable").getElementsByTagName("tr");
+          for (let i = 0; i < rows.length; i++) {
+            rows[i].cells[0].textContent = i + 1;
+          }
         }
-
         // Initialize with one row
         document.addEventListener("DOMContentLoaded", () => {
             updateSerialNumbers();
