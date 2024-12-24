@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comics Genre - Vibe Crafters</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: url('https://i.pinimg.com/originals/d3/83/bc/d383bc230ccf5109adaf5bea72671f53.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #f5faff;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            background: linear-gradient(90deg, #1a1a1a, #2a2a4f);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #87ceeb;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #f5faff;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #87ceeb;
+        }
+        
+
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://source.unsplash.com/1600x900/?sports') no-repeat center center/cover;
+            position: relative;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: #f5faff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+        }
+
+        .posters-section {
+            padding: 50px;
+            text-align: center;
+            background: #1a1a1a;
+            border-top: 5px solid #2a2a4f;
+        }
+
+        .posters-section h2 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #87ceeb;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .posters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .poster-card {
+            background: #1e1e3f;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .poster-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 1);
+        }
+
+        .poster-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+
+        .poster-card h3 {
+            padding: 10px;
+            color: #f5faff;
+        }
+
+        .poster-card .price {
+            color: #87ceeb;
+            font-size: 1.2em;
+        }
+
+
+
+        .poster-card button {
+            background: #87ceeb;
+            border: none;
+            color: #0c0c0c;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: background 0.3s;
+        }
+
+        .poster-card button:hover {
+            background: #5a9bd4;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #0c0c0c;
+            border-top: 5px solid #2a2a4f;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #f5faff;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Vibe Crafters</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#shop">Shop</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#genres">Genres</a></li>
+                <li><a href="index.html#reviews">Reviews</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="Order.html">Order</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Celebrities Posters</h1>
+            <p>Transform your space with the action-packed energy of comic poster designs.</p>
+        </div>
+    </div>
+
+    <section class="posters-section">
+        <h2>Featured Celebrities Posters</h2>
+        <div class="posters-grid" id="posters-grid">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Vibe Crafters. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const postersGrid = document.getElementById('posters-grid');
+const cartCount = document.getElementById('cart-count');
+
+let cartItems = 0;
+
+function addToCart() {
+    cartItems++;
+    cartCount.textContent = cartItems;
+}
+
+// Array of posters with specific image URLs and titles
+const posters = [
+    { url: 'https://i.pinimg.com/originals/95/51/88/9551881d9551a517bbaf73e5dbc2c39e.jpg', title: 'Billie Eilish' },
+    { url: 'https://i.pinimg.com/originals/1e/fc/60/1efc60149c16dcb1dfa6dcbe7c835ebf.png', title: 'Marilyn Monore' },
+    { url: 'https://media1.popsugar-assets.com/files/thumbor/6HOxN1RIaP0jjLZzYqEWsOJErZo/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2019/03/19/644/n/1922398/205d9190d2cbb3aa_GettyImages-1136734837/i/Ariana-Grande-Sweetener-World-Tour-Pictures.jpg', title: 'Ariana Grande' },
+    { url: 'https://i.pinimg.com/474x/31/93/c2/3193c2b52aefc0851c5d88ae8ca8d32e.jpg', title: 'Emma Wattson' },
+    { url: 'https://i.pinimg.com/736x/15/e9/e4/15e9e4da94f0d013278ca9641f54d55c.jpg', title: 'Kylie ' },
+    { url: 'https://i.pinimg.com/originals/4b/41/00/4b4100e7face5cfa10a5b19616ccc8b2.jpg', title: 'Kendal' },
+    { url: 'https://i.pinimg.com/736x/6c/bd/50/6cbd500f48fbe6a44e7690da08df48fe.jpg', title: 'Zendya' },
+    { url: 'https://bloximages.newyork1.vip.townnews.com/herald-dispatch.com/content/tncms/assets/v3/editorial/c/d9/cd92deb7-ac6e-5288-ba1f-df0216789b6c/56200d50503e8.image.jpg?resize=1200%2C1674', title: 'Osama' },
+    { url: 'https://i.pinimg.com/originals/1e/36/bc/1e36bc87f96ddd85570ac341f6555953.jpg', title: 'Saruk Khan' },
+    { url: 'https://i.pinimg.com/originals/48/a1/7f/48a17fe21433c50bbbadcca9f88f0a4a.jpg', title: 'Salmin Khan' },
+    // Add up to 50 entries...
+];
+
+// Dynamically add posters to the grid
+posters.forEach((poster, index) => {
+    const posterCard = document.createElement('div');
+    posterCard.className = 'poster-card';
+
+    posterCard.innerHTML = `
+        <img src="${poster.url}" alt="${poster.title}">
+        <h3>${poster.title}</h3>
+        <p class="price">₹50</p>
+       
+    `;
+
+    postersGrid.appendChild(posterCard);
+});
+
+    </script>
+</body>
+</html>
