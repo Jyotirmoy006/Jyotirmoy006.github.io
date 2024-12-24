@@ -408,55 +408,57 @@
         }
     
         // Function to send the form data via EmailJS
-        async function sendEmail(event) {
-            event.preventDefault(); // Prevent default form submission
+       async function sendEmail(event) {
+        event.preventDefault(); // Prevent default form submission
     
-            const form = document.getElementById("orderForm");
-            const formData = new FormData(form); // Collect form data
+        const form = document.getElementById("orderForm");
+        const formData = new FormData(form); // Collect form data
     
-            // Prepare the email data
-            const emailData = {
-                name: formData.get('name'),
-                number: formData.get('number'),
-                email: formData.get('email'),
-                message: formData.get('message'),
-                orderDetails: [], // Will hold the order details (serial no., poster id, quantity)
-                images: [] // Will hold the image URLs
-            };
+        // Prepare the email data
+        const emailData = {
+            name: formData.get('name'),
+            number: formData.get('number'),
+            email: formData.get('email'),
+            message: formData.get('message'),
+            orderDetails: [], // Will hold the order details (serial no., poster id, quantity)
+            images: [] // Will hold the image URLs
+        };
     
-            // Collect order details from the table
-            const serialNumbers = formData.getAll('serial_no[]');
-            const posterIds = formData.getAll('poster_id[]');
-            const quantities = formData.getAll('quantity[]');
+        // Collect order details from the table
+        const serialNumbers = formData.getAll('serial_no[]');
+        const posterIds = formData.getAll('poster_id[]');
+        const quantities = formData.getAll('quantity[]');
     
-            for (let i = 0; i < serialNumbers.length; i++) {
-                emailData.orderDetails.push({
-                    serial_no: serialNumbers[i],
-                    poster_id: posterIds[i],
-                    quantity: quantities[i]
-                });
-            }
+        for (let i = 0; i < serialNumbers.length; i++) {
+            emailData.orderDetails.push({
+                serial_no: serialNumbers[i],
+                poster_id: posterIds[i],
+                quantity: quantities[i]
+            });
+        }
     
-            // Handle image uploads
-            const imageFiles = formData.getAll('images[]');
-            for (let file of imageFiles) {
-                const imageUrl = await uploadImageToImageBB(file); // Upload the image
+        // Upload images to ImageBB and collect their URLs
+        const imageFiles = formData.getAll('images[]');
+        for (let file of imageFiles) {
+            if (file.size > 0) {
+                const imageUrl = await uploadImageToImageBB(file);
                 if (imageUrl) {
-                    emailData.images.push(imageUrl); // Add the image URL to emailData
+                    emailData.images.push(imageUrl);
                 }
             }
-    
-            // Send email using EmailJS
-            emailjs.send('service_axgh086', 'template_dp25nd9', emailData)
-                .then((response) => {
-                    console.log('Success:', response);
-                    alert('Order sent successfully!');
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    alert('Failed to send order. Please try again.');
-                });
         }
+    
+        // Send the data via EmailJS
+        emailjs.send("service_axgh086", "template_dp25nd9", emailData)
+            .then(response => {
+                alert("Order sent successfully!");
+                console.log("Email sent successfully:", response);
+            })
+            .catch(error => {
+                console.error("Error sending email:", error);
+            });
+    }
+
     </script>
 </body>
 </html>
