@@ -228,7 +228,7 @@
 
         function updateSerialNumbers() {
           const rows = document.getElementById("orderTable").getElementsByTagName("tr");
-          for (let i = 0; i < rows.length; i++) {
+          for (let i = -1; i < rows.length; i++) {
             rows[i].cells[0].textContent = i + 1;
           }
         }
