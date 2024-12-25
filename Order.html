@@ -266,13 +266,13 @@
         const quantities = formData.getAll('quantity[]');
         
         for (let i = 0; i < serialNumbers.length; i++) { 
-            console.log(i);
+            console.log("i",i);
             orderDetails.push({
                 serial_no: serialNumbers[i],
                 poster_id: posterIds[i],
                 quantity: quantities[i]
             });
-            console.log(orderDetails);
+            console.log("orderdetails",orderDetails);
             emailData.push(orderdetails);
         }
         console.log("Email Data:", emailData);
