@@ -268,13 +268,12 @@
         console.log("serial",t);
         for (let i = 0; i < 2; i++) { 
             console.log("i",i);
-            orderDetails.push({
+            emailData.orderDetails.push({
                 serial_no: serialNumbers[i],
                 poster_id: posterIds[i],
                 quantity: quantities[i]
             });
-            console.log("orderdetails",orderDetails);
-            emailData.push(orderdetails);
+            ;
         }
         console.log("Email Data:", emailData);
         
