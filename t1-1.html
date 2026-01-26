@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroKolkata Mainframe</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg: #0b0e14;
+            --panel: #151b25;
+            --border: 1px solid #2f3640;
+            --primary: #00d2ff;
+            --accent: #00e676; /* Green for efficiency */
+            --alert: #ff4757;   /* Red for low stock */
+            --warn: #ffa502;    /* Orange for medium alerts */
+            --text: #dcdde1;
+        }
+
+        body {
+            margin: 0; padding: 20px;
+            background: var(--bg); color: var(--text);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            height: 95vh;
+            display: grid;
+            grid-template-rows: 60px 1fr 1fr; /* Header, Graph/Logs, Agents */
+            gap: 20px;
+        }
+
+        /* --- 1. HEADER --- */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: var(--border); padding-bottom: 10px;
+        }
+        h1 { margin: 0; font-weight: 300; letter-spacing: 2px; font-size: 1.5rem; }
+        .admin-btn {
+            background: rgba(255,255,255,0.05); border: 1px solid #555;
+            color: white; padding: 10px 20px; border-radius: 6px;
+            text-decoration: none; font-size: 0.9rem; transition: 0.2s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .admin-btn:hover { background: var(--primary); color: black; border-color: var(--primary); }
+
+        /* --- 2. TOP SECTION (GRAPH + LOGS) --- */
+        .top-section {
+            display: grid; grid-template-columns: 2fr 1fr; gap: 20px;
+            min-height: 0; /* Prevents overflow */
+        }
+
+        .panel {
+            background: var(--panel); border: var(--border);
+            border-radius: 12px; padding: 20px;
+            display: flex; flex-direction: column;
+            position: relative;
+        }
+
+        /* GRAPH */
+        .chart-wrapper { flex-grow: 1; position: relative; width: 100%; height: 100%; }
+        
+        /* LOGS */
+        .log-box {
+            flex-grow: 1; overflow-y: auto; font-family: 'Courier New', monospace;
+            font-size: 0.85rem; padding-right: 5px;
+            border-top: 1px solid #333; margin-top: 10px; padding-top: 10px;
+        }
+        .log-entry { margin-bottom: 6px; border-left: 3px solid #555; padding-left: 8px; }
+        .log-entry.critical { border-left-color: var(--alert); color: #ff8e8e; }
+        .log-entry.order { border-left-color: var(--accent); color: #9bf6ff; }
+        .log-time { color: #666; font-size: 0.75rem; margin-right: 5px; }
+
+        /* --- 3. BOTTOM SECTION (AGENTS) --- */
+        .agent-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+        }
+        
+        .agent-group {
+            background: rgba(21, 27, 37, 0.5);
+            border: 1px dashed #333;
+            border-radius: 12px;
+            padding: 15px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
+        }
+        .group-label {
+            grid-column: 1 / -1; font-size: 0.8rem; text-transform: uppercase;
+            color: #666; letter-spacing: 1px; margin-bottom: 5px; border-bottom: 1px solid #333;
+        }
+
+        /* Agent Cards */
+        .agent-card {
+            background: #1e2530; border-radius: 8px; padding: 15px;
+            border-left: 4px solid #555; transition: 0.3s;
+        }
+        .agent-title { font-weight: bold; font-size: 0.95rem; margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .agent-metric { font-size: 0.8rem; color: #aaa; margin-bottom: 4px; }
+        .metric-val { color: white; font-weight: bold; float: right; }
+        
+        /* Progress Bar for Inventory */
+        .bar-bg { background: #333; height: 6px; border-radius: 3px; margin-top: 4px; width: 100%; }
+        .bar-fill { height: 100%; border-radius: 3px; background: var(--primary); width: 50%; transition: width 0.5s; }
+
+        /* Status Dot */
+        .dot { height: 8px; width: 8px; border-radius: 50%; background: #555; display: inline-block; }
+        .active-dot { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+        .alert-dot { background: var(--alert); box-shadow: 0 0 8px var(--alert); }
+
+        /* Factory Stats */
+        .factory-stat { text-align: center; background: #111; padding: 8px; border-radius: 6px; margin-top: 10px; }
+        .fs-big { font-size: 1.2rem; font-weight: bold; color: var(--primary); }
+        .fs-label { font-size: 0.7rem; color: #777; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <h1>ELECTRO<span style="color:var(--primary)">KOLKATA</span></h1>
+            <small style="color:#777">Autonomous Supply Chain Orchestrator</small>
+        </div>
+        <a href="admin.html" class="admin-btn" target="_blank">
+            <span>⚙️ Scenario Controls</span>
+        </a>
+    </header>
+
+    <div class="top-section">
+        <div class="panel">
+            <h3 style="margin:0 0 10px 0; color:var(--primary); font-size:1rem;">Production vs Target Analysis</h3>
+            <div class="chart-wrapper">
+                <canvas id="productionChart"></canvas>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3 style="margin:0 0 10px 0; color:var(--accent); font-size:1rem;">System Decisions Log</h3>
+            <div class="log-box" id="terminal">
+                <div class="log-entry"><span class="log-time">08:00</span> System Initialized. Waiting for Admin Injection...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="agent-grid">
+        
+        <div class="agent-group">
+            <div class="group-label">Planning Layer</div>
+            
+            <div class="agent-card" style="border-left-color: var(--primary);">
+                <div class="agent-title">Market Intelligence <div class="dot active-dot"></div></div>
+                <div class="agent-metric">Weekly Target: <span class="metric-val" id="targetVal">0</span></div>
+                <div class="agent-metric">Required/Day: <span class="metric-val" id="reqRate">0</span></div>
+                <div class="agent-metric">Gap Analysis: <span class="metric-val" id="gapVal" style="color:var(--accent)">ON TRACK</span></div>
+            </div>
+
+            <div class="agent-card" style="border-left-color: var(--warn);">
+                <div class="agent-title">Inventory Manager <div class="dot" id="invDot"></div></div>
+                
+                <div class="agent-metric">Lenses <span class="metric-val" id="lensCount">0</span></div>
+                <div class="bar-bg"><div class="bar-fill" id="lensBar"></div></div>
+                
+                <div class="agent-metric" style="margin-top:8px;">Body Cases <span class="metric-val" id="caseCount">0</span></div>
+                <div class="bar-bg"><div class="bar-fill" id="caseBar"></div></div>
+
+                <div class="agent-metric" style="margin-top:8px;">Silicon Chips <span class="metric-val" id="chipCount">0</span></div>
+                <div class="bar-bg"><div class="bar-fill" id="chipBar"></div></div>
+            </div>
+        </div>
+
+        <div class="agent-group">
+            <div class="group-label">Execution Layer</div>
+
+            <div class="agent-card" style="border-left-color: var(--accent);">
+                <div class="agent-title">Procurement Bot <div class="dot" id="procDot"></div></div>
+                <div class="agent-metric">Active Orders: <span class="metric-val" id="orderCount">0</span></div>
+                <div class="agent-metric">Last Restock: <span class="metric-val" id="lastRestock">None</span></div>
+                <div style="margin-top:10px; font-size:0.75rem; color:#888;">
+                    Strategy: <span id="stratDisplay" style="color:white; font-weight:bold;">BALANCED</span>
+                </div>
+            </div>
+
+            <div class="agent-card" style="border-left-color: #ff4757;">
+                <div class="agent-title">Factory Controller <div class="dot active-dot"></div></div>
+                <div class="factory-stat">
+                    <div class="fs-big" id="currentPPM">0</div>
+                    <div class="fs-label">Units Per Minute</div>
+                </div>
+                <div class="agent-metric" style="margin-top:10px;">Active Belts: <span class="metric-val" id="activeBelts">0/4</span></div>
+                <div class="agent-metric">Shift Efficiency: <span class="metric-val">94%</span></div>
+                
+                <button onclick="openSimulation()" style="width:100%; margin-top:10px; background:#333; color:white; border:none; padding:5px; border-radius:4px; cursor:pointer;">View 3D Floor ➚</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURATION (REALITY NUMBERS) ---
+        const PRODUCTION_CAPACITY_PER_BELT = 800; // Units per simulated day
+        const SIMULATION_SPEED = 1000; // 1 second = 1 hour (Fast simulation)
+        
+        // --- STATE VARIABLES ---
+        let inventory = { lens: 0, case: 0, chip: 0 };
+        let demandTarget = 0; // Weekly goal
+        let producedToday = 0;
+        let totalProduced = 0;
+        let activeBelts = 0;
+        let currentHour = 8; // Start at 8 AM
+
+        // --- CHART SETUP ---
+        const ctx = document.getElementById('productionChart').getContext('2d');
+        const prodChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array(20).fill(''),
+                datasets: [
+                    { label: 'Cumulative Production', data: [], borderColor: '#00d2ff', borderWidth: 2, fill: true, backgroundColor: 'rgba(0, 210, 255, 0.1)' },
+                    { label: 'Demand Trajectory', data: [], borderColor: '#555', borderDash: [5, 5], borderWidth: 1 }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false, scales: { x: { display: false }, y: { grid: { color: '#222' } } }, plugins: { legend: { display: true } }, animation: false }
+        });
+
+        // --- CORE SIMULATION LOOP (THE BRAIN) ---
+        setInterval(() => {
+            // 1. Read Admin Data (Context)
+            readAdminData();
+
+            // 2. Calculate Production Logic
+            if(demandTarget > 0) {
+                // Calculate required daily rate
+                const requiredDaily = Math.ceil(demandTarget / 7);
+                document.getElementById('reqRate').innerText = requiredDaily;
+
+                // How many belts do we need?
+                const beltsNeeded = Math.min(4, Math.ceil(requiredDaily / PRODUCTION_CAPACITY_PER_BELT));
+                activeBelts = beltsNeeded;
+                
+                // Calculate hourly production based on belts
+                const unitsThisHour = Math.floor((activeBelts * PRODUCTION_CAPACITY_PER_BELT) / 24); // 24 hour op
+
+                // 3. CONSUME RESOURCES (REALITY CHECK)
+                if (inventory.lens >= unitsThisHour && inventory.case >= unitsThisHour && inventory.chip >= unitsThisHour) {
+                    // We have materials, produce!
+                    inventory.lens -= unitsThisHour;
+                    inventory.case -= unitsThisHour;
+                    inventory.chip -= unitsThisHour;
+                    
+                    producedToday += unitsThisHour;
+                    totalProduced += unitsThisHour;
+                    
+                    // Update Chart
+                    updateChart(totalProduced, demandTarget);
+
+                } else {
+                    // STOCKOUT! Stop production
+                    activeBelts = 0;
+                    log(`⚠️ PRODUCTION HALTED: Missing Raw Materials!`, "critical");
+                }
+            }
+
+            // 4. Update UI
+            updateUI();
+            
+            // 5. Trigger Agents
+            runInventoryAgent();
+            runProcurementAgent();
+
+            // Advance Time
+            currentHour++;
+            if(currentHour > 24) { currentHour = 1; producedToday = 0; }
+
+        }, SIMULATION_SPEED);
+
+        // --- AGENT LOGIC ---
+
+        function runInventoryAgent() {
+            // Update Bars
+            updateBar('lens', inventory.lens, 5000);
+            updateBar('case', inventory.case, 10000);
+            updateBar('chip', inventory.chip, 5000);
+
+            // Alert Logic
+            if(inventory.lens < 500 || inventory.case < 500 || inventory.chip < 500) {
+                document.getElementById('invDot').className = "dot alert-dot";
+            } else {
+                document.getElementById('invDot').className = "dot active-dot";
+            }
+        }
+
+        function runProcurementAgent() {
+            // Auto-Reorder Logic
+            if(inventory.lens < 400) {
+                log(`📦 PROCUREMENT: Auto-ordering 2000 Lenses (Air Freight)...`, "order");
+                inventory.lens += 2000; // Instant delivery for demo (or add delay logic)
+                document.getElementById('lastRestock').innerText = "Lens (Just Now)";
+                flashProcurement();
+            }
+            if(inventory.chip < 400) {
+                log(`📦 PROCUREMENT: Emergency Chip supply acquired!`, "order");
+                inventory.chip += 1500;
+                document.getElementById('lastRestock').innerText = "Chips (Just Now)";
+                flashProcurement();
+            }
+        }
+
+        // --- DATA HANDLING ---
+        function readAdminData() {
+            const raw = localStorage.getItem('admin_payload');
+            if(!raw) return;
+            const data = JSON.parse(raw);
+
+            // Set Global State if changed
+            if(demandTarget !== parseInt(data.demand)) {
+                demandTarget = parseInt(data.demand);
+                // Reset simulation slightly for demo purposes
+                log(`🎯 NEW OBJECTIVE: Produce ${demandTarget} Units/Week`);
+                
+                // Initialize Stocks from Admin Scenario
+                if(data.inventory) {
+                    inventory.lens = parseInt(data.inventory.lens);
+                    // Use multipliers for realism if not provided
+                    inventory.case = inventory.lens * 2; 
+                    inventory.chip = inventory.lens; 
+                }
+            }
+
+            document.getElementById('targetVal').innerText = demandTarget.toLocaleString();
+            
+            // Update Strategy Display
+            if(data.strategies) {
+                const s = Object.values(data.strategies).map(v => v.toUpperCase()).join(" / ");
+                document.getElementById('stratDisplay').innerText = s;
+            }
+        }
+
+        // --- UI HELPERS ---
+        function updateBar(type, val, max) {
+            const pct = Math.min(100, (val / max) * 100);
+            const el = document.getElementById(type+'Bar');
+            el.style.width = pct + "%";
+            document.getElementById(type+'Count').innerText = val.toLocaleString();
+            
+            if(pct < 10) el.style.backgroundColor = "var(--alert)";
+            else if(pct < 30) el.style.backgroundColor = "var(--warn)";
+            else el.style.backgroundColor = "var(--primary)";
+        }
+
+        function log(msg, type="") {
+            const box = document.getElementById('terminal');
+            const div = document.createElement('div');
+            div.className = `log-entry ${type}`;
+            div.innerHTML = `<span class="log-time">${currentHour}:00</span> ${msg}`;
+            box.appendChild(div);
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function updateChart(prod, target) {
+            prodChart.data.datasets[0].data.push(prod);
+            prodChart.data.datasets[1].data.push(target); // Target line
+            if(prodChart.data.datasets[0].data.length > 20) {
+                prodChart.data.datasets[0].data.shift();
+                prodChart.data.datasets[1].data.shift();
+            }
+            prodChart.update();
+        }
+
+        function updateUI() {
+            document.getElementById('activeBelts').innerText = `${activeBelts}/4`;
+            // Calculate PPM (rough estimate from hourly)
+            const ppm = Math.floor((activeBelts * PRODUCTION_CAPACITY_PER_BELT) / 1440 * 60); // simplified
+            document.getElementById('currentPPM').innerText = ppm;
+            
+            // Gap Analysis
+            const pctDone = (totalProduced / demandTarget) * 100;
+            const gapEl = document.getElementById('gapVal');
+            if(activeBelts === 0 && demandTarget > 0) {
+                gapEl.innerText = "STALLED"; gapEl.style.color = "var(--alert)";
+            } else if (pctDone > 100) {
+                gapEl.innerText = "COMPLETE"; gapEl.style.color = "var(--accent)";
+            } else {
+                gapEl.innerText = "IN PROGRESS"; gapEl.style.color = "#fff";
+            }
+            
+            // Bridge to Factory Simulation
+            localStorage.setItem('live_factory_demand', activeBelts * 1500); // Scale for visuals
+        }
+
+        function flashProcurement() {
+            const dot = document.getElementById('procDot');
+            dot.className = "dot active-dot";
+            setTimeout(() => dot.className = "dot", 500);
+        }
+
+        function openSimulation() {
+            window.open('simulation.html?order='+demandTarget, '_blank');
+        }
+
+    </script>
+</body>
+</html>
