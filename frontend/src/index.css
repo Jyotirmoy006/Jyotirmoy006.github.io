@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+:root {
+  --bg: #f8fafc; /* Switched to a cleaner "Ghost White" */
+  --primary: #059669;
+  --dark: #0f172a; /* Deeper slate for a more professional look */
+}
+
+#root { width: 100%; margin: 0; padding: 0; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  font-family: 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
